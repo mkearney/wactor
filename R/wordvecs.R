@@ -47,7 +47,7 @@ validate_tokenizer_ <- function(expr) {
   ## if already quosure or function then return
   if (tryCatch(is.function(eval(expr)),
     error = function(e) FALSE)) {
-    return(prepend_class(expr, "tokenizer"))
+    return(prepend_class(eval(expr), "tokenizer"))
   }
 
   ## if null, return default tokenizer
@@ -87,7 +87,7 @@ config_vectorizer <- function(x, tokenizer = NULL,
   }
 
   ## initialize output environment
-  e <- new.env(parent = emptyenv())
+  e <- list()
   ## ccreate/config tokenizer
   e$tokenizer <- validate_tokenizer(substitute(tokenizer))
 
@@ -99,17 +99,14 @@ config_vectorizer <- function(x, tokenizer = NULL,
     tokenizer          = e$tokenizer)
 
   ## create and prune vocab
-  vocab <- text2vec::prune_vocabulary(
+  e$vocab <- text2vec::prune_vocabulary(
     vocabulary         = text2vec::create_vocabulary(i),
     doc_proportion_max = doc_prop_max,
     doc_proportion_min = doc_prop_min,
     vocab_term_max     = max_words)
 
   ## vectorizer
-  e$vectorizer <- text2vec::vocab_vectorizer(vocab)
-
-  ## remove constant
-  e$vocab <- vocab
+  e$vectorizer <- text2vec::vocab_vectorizer(e$vocab)
 
   ## document-term matrix
   e$dtm <- function(x) {
@@ -141,28 +138,30 @@ config_vectorizer <- function(x, tokenizer = NULL,
   ## return environment
   structure(
     e,
-    class = c("vactorizer", "environment")
+    class = c("vactorizer", "list")
   )
 }
 
 prettysum <- function(x) {
   prettyNum(sum(x, na.rm = TRUE), big.mark = ",")
 }
-
+prettylen <- function(x) {
+  prettyNum(length(x), big.mark = ",")
+}
 print.vactorizer <- function(x, ...) {
   cat("# A vactorizer:",
     prettysum(x$vocab$doc_count), "(documents) x",
-    prettysum(x$vocab$term_count), "(words)", fill = TRUE)
+    prettylen(x$vocab$term_count), "(words)", fill = TRUE)
   cat(paste0("<environment: ", environmentName(x), ">"), fill = TRUE)
 }
 
-print.vactor <- function(x, ...) {
-  v <- levels(x)
-  print(as.character(x))
-  cat("# A vactor:",
-    prettysum(v$vocab$doc_count), "(documents) x",
-    prettysum(v$vocab$term_count), "(words)", fill = TRUE)
-}
+# print.vactor <- function(x, ...) {
+#   v <- levels(x)
+#   print(as.character(x))
+#   cat("# A vactor:",
+#     prettysum(v$vocab$doc_count), "(documents) x",
+#     prettysum(v$vocab$term_count), "(words)", fill = TRUE)
+# }
 
 get_train_rows <- function(x) attr(x, "train_rows")
 
