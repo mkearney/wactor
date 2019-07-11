@@ -78,9 +78,9 @@ validate_tokenizer <- function(tokenizer = NULL) {
 
 
 config_vectorizer <- function(x, tokenizer = NULL,
-  max_words = 20000,
-  doc_prop_max = 1.00,
-  doc_prop_min = 0.001) {
+                              max_words = 20000,
+                              doc_prop_max = 1.00,
+                              doc_prop_min = 0.001) {
 
   if (!is.null(train_rows <- get_train_rows(x))) {
     x <- x[train_rows]
@@ -126,15 +126,14 @@ config_vectorizer <- function(x, tokenizer = NULL,
 
   ## fit on data
   msd <- e$.tfidf$fit_transform(e$dtm(x))
-  tfidf_m <- apply(msd, 2, mean)
-  tfidf_sd <- apply(msd, 2, sd)
+  e$.tfidf_m <- apply(msd, 2, mean)
+  e$.tfidf_sd <- apply(msd, 2, sd)
 
   ## export function for creating tfidfs
   e$tfidf <- function(x, normalize = TRUE) {
     tf <- e$.tfidf$transform(e$dtm(x))
     if (normalize) {
-      tf[, 1:ncol(tf)] <- i - tfidf_m
-      tf[, 1:ncol(tf)] <- i / tfidf_sd
+      tf[, 1:ncol(tf)] <- (tf - e$.tfidf_m) / e$.tfidf_sd
     }
     tf
   }
