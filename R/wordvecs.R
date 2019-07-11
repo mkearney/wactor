@@ -130,7 +130,8 @@ config_vectorizer <- function(x, tokenizer = NULL,
   e$tfidf <- function(x, normalize = TRUE) {
     tf <- e$.tfidf$transform(e$dtm(x))
     if (normalize) {
-      tf[, 1:ncol(tf)] <- (tf - e$.tfidf_m) / e$.tfidf_sd
+      tf[, 1:ncol(tf)] <- tf - e$.tfidf_m
+      tf[, 1:ncol(tf)] <- tf / e$.tfidf_sd
     }
     tf
   }
