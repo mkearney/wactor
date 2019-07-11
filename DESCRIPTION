@@ -19,3 +19,5 @@ Imports:
     dapr,
     data.table,
     dplyr
+URL: https://github.com/mkearney/vactor
+BugReports: https://github.com/mkearney/vactor/issues
