@@ -40,36 +40,50 @@ remotes::install_github("mkearney/wactor")
 ```
 ## Example
 
-When you are working with text (e.g., natural language) data:
+Let's say we're working with some text (e.g., natural language) data:
 
 ```{r example}
 ## load wactor package
 library(wactor)
 
 ## text data (sentences)
-word <- function() {
-  paste(sample(letters, sample(2:10, 1), replace = TRUE), collapse = "")
-}
-sentence <- function() {
-  paste0(paste(replicate(sample(3:12, 1), word()), collapse = " "), ".")
-}
-
-## setence data pt 1
-s1 <- replicate(50, sentence())
-
-## setence data pt 2
-s2 <- replicate(50, sentence())
+s1 <- c(
+  "This is a test",
+  "This will be a test",
+  "This was a test"
+)
+s2 <- c(
+  "This is going to be a test",
+  "This will have been a test",
+  "This has been a test"
+)
 ```
 
-Convert the text strings into numeric vector/matrices
+Use `Wactorizer` (an R6 object) to convert the text strings into numeric vector/matrices:
 
 ```{r}
 ## create wactor
 w <- Wactorizer$new(s1)
-
-## get term frequency inverse document frequency matrix
-w$tfidf(s1)
-
-## apply to other data
-w$dtm(s2)
 ```
+
+Get the document term frequency matrix
+
+```{r}
+## term frequency inverse document frequency
+w$dtm(s1)
+```
+
+or term frequency inverse document frequency matrix
+
+```{r}
+## apply to other data
+w$tfidf(s2)
+```
+
+Or apply the watctor to new data
+
+```{r}
+w$dtm(s2)
+w$tfidf(s2)
+```
+
