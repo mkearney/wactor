@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# vactor
+# wactor
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -21,10 +21,10 @@ A user-friendly factor-like interface for converting strings of text into numeri
 
 ## Installation
 
-<!-- You can install the released version of vactor from [CRAN](https://CRAN.R-project.org) with:
+<!-- You can install the released version of wactor from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("vactor")
+install.packages("wactor")
 ```
 -->
 
