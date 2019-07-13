@@ -1,0 +1,75 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# vactor
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+A user-friendly factor-like interface for converting strings of text into numeric vectors and rectangular data structures.
+
+## Installation
+
+<!-- You can install the released version of vactor from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("vactor")
+```
+-->
+
+You can install the development version from [GitHub](https://github.com/mkearney/wactor) with:
+
+``` r
+## install {remotes} if not already
+if (!requireNamespace("remotes")) {
+  install.packages("remotes")
+}
+## install wactor for github
+remotes::install_github("mkearney/wactor")
+```
+## Example
+
+When you are working with text (e.g., natural language) data:
+
+```{r example}
+## load wactor package
+library(wactor)
+
+## text data (sentences)
+word <- function() {
+  paste(sample(letters, sample(2:10, 1), replace = TRUE), collapse = "")
+}
+sentence <- function() {
+  paste0(paste(replicate(sample(3:12, 1), word()), collapse = " "), ".")
+}
+
+## setence data pt 1
+s1 <- replicate(50, sentence())
+
+## setence data pt 2
+s2 <- replicate(50, sentence())
+```
+
+Convert the text strings into numeric vector/matrices
+
+```{r}
+## create wactor
+w <- Wactorizer$new(s1)
+
+## get term frequency inverse document frequency matrix
+w$tfidf(s1)
+
+## apply to other data
+w$dtm(s2)
+```

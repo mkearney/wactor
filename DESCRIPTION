@@ -1,5 +1,5 @@
-Package: vactor
-Title: Streamlined Text Vectors
+Package: wactor
+Title: Word Factor Vectors
 Version: 0.0.1
 Authors@R: 
     person(given = "Michael W.",
@@ -7,8 +7,8 @@ Authors@R:
            role = c("aut", "cre"),
            email = "kearneymw@missouri.edu",
            comment = c(ORCID = "0000-0002-0730-4694"))
-Description: A user-friendly interface for converting text into
-    numeric vectors and rectangular data structures.
+Description: A user-friendly factor-like interface for converting strings of 
+    text into numeric vectors and rectangular data structures.
 Encoding: UTF-8
 LazyData: true
 Imports: 
@@ -20,7 +20,7 @@ Imports:
     data.table,
     dplyr,
     R6
-URL: https://github.com/mkearney/vactor
-BugReports: https://github.com/mkearney/vactor/issues
+URL: https://github.com/mkearney/wactor
+BugReports: https://github.com/mkearney/wactor/issues
 RoxygenNote: 6.1.1
 License: MIT + file LICENSE
