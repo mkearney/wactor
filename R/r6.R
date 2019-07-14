@@ -1,5 +1,5 @@
 #' @export
-Wactorizer <- R6::R6Class("wactorizer",
+Wactor <- R6::R6Class("wactor",
   private = list(
     .text = NA_character_,
     .vectorizer = NULL,

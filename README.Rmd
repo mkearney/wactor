@@ -11,6 +11,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+options(width = 120)
 ```
 # wactor
 
@@ -40,7 +41,7 @@ remotes::install_github("mkearney/wactor")
 ```
 ## Example
 
-Let's say we're working with some text (e.g., natural language) data:
+Here's some basic text (e.g., natural language) data:
 
 ```{r example}
 ## load wactor package
@@ -48,14 +49,14 @@ library(wactor)
 
 ## text data (sentences)
 s1 <- c(
-  "This is a test",
-  "This will be a test",
-  "This was a test"
+  "This test is a test",
+  "This one will be a test",
+  "This this was a test"
 )
 s2 <- c(
-  "This is going to be a test",
-  "This will have been a test",
-  "This has been a test"
+  "This test is going to be a test",
+  "This one will have been a test",
+  "This this has been a test"
 )
 ```
 
@@ -63,27 +64,30 @@ Use `Wactorizer` (an R6 object) to convert the text strings into numeric vector/
 
 ```{r}
 ## create wactor
-w <- Wactorizer$new(s1)
+w <- Wactor$new(s1)
 ```
 
 Get the document term frequency matrix
 
 ```{r}
-## term frequency inverse document frequency
+## term frequency–inverse document frequency
 w$dtm(s1)
 ```
 
-or term frequency inverse document frequency matrix
+or term frequency–inverse document frequency matrix
 
 ```{r}
 ## apply to other data
 w$tfidf(s2)
 ```
 
-Or apply the watctor to new data
+Or apply the wactor object to new data
 
 ```{r}
+## document term frequecy
 w$dtm(s2)
+
+## term frequency–inverse document frequency
 w$tfidf(s2)
 ```
 
