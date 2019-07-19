@@ -1,67 +1,23 @@
 #' @export
-Wactor <- R6::R6Class("wactor",
-  private = list(
-    .text = NA_character_,
-    .vectorizer = NULL,
-    .tokenizer = NULL,
-    .vocab = NULL,
-    .dtm = NULL,
-    .tfidf = NULL
-  ),
-  active = list(
-    vectorizer = function(value) {
-      if (missing(value)) {
-        private$.vectorizer
-      } else {
-        stop("`$vectorizer` is read only", call. = FALSE)
-      }
-    },
-    tokenizer = function(value) {
-      if (missing(value)) {
-        private$.tokenizer
-      } else {
-        stop("`$tokenizer` is read only", call. = FALSE)
-      }
-    },
-    vocab = function(value) {
-      if (missing(value)) {
-        private$.vocab
-      } else {
-        stop("`$vocab` is read only", call. = FALSE)
-      }
-    },
-    dtm = function(value) {
-      if (missing(value)) {
-        private$.dtm
-      } else {
-        stop("`$dtm` is read only", call. = FALSE)
-      }
-    },
-    tfidf = function(value) {
-      if (missing(value)) {
-        private$.tfidf
-      } else {
-        stop("`$tfidf` is read only", call. = FALSE)
-      }
-    },
-    text = function(value) {
-      if (missing(value)) {
-        private$.text
-      } else {
-        stopifnot(is.character(value))
-        private$.text <- value
-        self
-      }
-    }
-  ),
-  public = list(
-    initialize = function(text, ...) {
-      private$.text <- text
-      private$.vectorizer <- config_vectorizer(text, ...)
-      private$.vocab <- private$.vectorizer$vocab
-      private$.tokenizer <- private$.vectorizer$tokenizer
-      private$.dtm <- private$.vectorizer$dtm
-      private$.tfidf <- private$.vectorizer$tfidf
-    }
-  )
+Wactor <- R6::R6Class("wactor", list(
+  .text = NULL,
+  .vectorizer = NULL,
+  .vocab = NULL,
+  .tokenizer = NULL,
+  dtm = NULL,
+  tfidf = NULL,
+  initialize  = function(text = character(), ...) {
+    self$.text       <- text
+    self$.vectorizer <- config_vectorizer(text, ...)
+    self$.vocab      <- self$.vectorizer$vocab
+    self$.tokenizer  <- self$.vectorizer$tokenizer
+    self$dtm         <- self$.vectorizer$dtm
+    self$tfidf       <- self$.vectorizer$tfidf
+  },
+  print = function(...) {
+    len <- length(self$.vocab$term)
+    x <- as.data.frame(self)
+    attr(x, "len") <- len
+    print(x, ...)
+  })
 )

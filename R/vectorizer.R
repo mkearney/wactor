@@ -38,7 +38,7 @@ config_vectorizer <- function(x, tokenizer = NULL,
       progressbar        = FALSE,
       ids                = seq_along(x),
       tokenizer          = e$tokenizer)
-    text2vec::create_dtm(x, e$vectorizer)
+    suppressWarnings(text2vec::create_dtm(x, e$vectorizer))
   }
 
   ## create tfidf method
@@ -53,8 +53,7 @@ config_vectorizer <- function(x, tokenizer = NULL,
   e$tfidf <- function(x, normalize = TRUE) {
     tf <- e$.tfidf$transform(e$dtm(x))
     if (normalize) {
-      tf[, 1:ncol(tf)] <- tf - e$.tfidf_m
-      tf[, 1:ncol(tf)] <- tf / e$.tfidf_sd
+      tf <- scale_with_params(tf, e$.tfidf_m, e$.tfidf_sd)
     }
     tf
   }
@@ -65,6 +64,20 @@ config_vectorizer <- function(x, tokenizer = NULL,
     class = c("vactorizer", "list")
   )
 }
+
+scale_with_params <- function(x, m, sd) {
+  ncol <- length(m)
+  nrow <- nrow(x)
+  (x - matrix(m,
+    nrow = nrow,
+    ncol = ncol,
+    byrow = TRUE)) / matrix(sd,
+      nrow = nrow,
+      ncol = ncol,
+      byrow = TRUE)
+}
+
+
 
 prettysum <- function(x) {
   prettyNum(sum(x, na.rm = TRUE), big.mark = ",")

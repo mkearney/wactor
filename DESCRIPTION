@@ -19,8 +19,11 @@ Imports:
     dapr,
     data.table,
     dplyr,
-    R6
+    R6,
+    Rcpp
 URL: https://github.com/mkearney/wactor
 BugReports: https://github.com/mkearney/wactor/issues
 RoxygenNote: 6.1.1
 License: MIT + file LICENSE
+LinkingTo: 
+    Rcpp

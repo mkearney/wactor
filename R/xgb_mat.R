@@ -27,9 +27,9 @@ xgb_mat.matrix <- function(x, ..., y = NULL, split = NULL) {
     ))
   }
   list(
-    train = xgboost::xgb.DMatrix(x[train_rows, ],
+    train = xgboost::xgb.DMatrix(x[train_rows, , drop = FALSE],
       label = y[train_rows]),
-    test = xgboost::xgb.DMatrix(x[-train_rows, ],
+    test = xgboost::xgb.DMatrix(x[-train_rows, , drop = FALSE],
       label = y[-train_rows])
   )
 }
@@ -45,14 +45,14 @@ xgb_mat.dgCMatrix <- function(x, ..., y = NULL, split = NULL) {
   train_rows <- sample(seq_len(nrow(x)), nrow(x) * split)
   if (is.null(y)) {
     return(list(
-      train = xgboost::xgb.DMatrix(x[train_rows, ]),
-      test = xgboost::xgb.DMatrix(x[-train_rows, ])
+      train = xgboost::xgb.DMatrix(x[train_rows, , drop = FALSE]),
+      test = xgboost::xgb.DMatrix(x[-train_rows, , drop = FALSE])
     ))
   }
   list(
-    train = xgboost::xgb.DMatrix(x[train_rows, ],
+    train = xgboost::xgb.DMatrix(x[train_rows, , drop = FALSE],
       label = y[train_rows]),
-    test = xgboost::xgb.DMatrix(x[-train_rows, ],
+    test = xgboost::xgb.DMatrix(x[-train_rows, , drop = FALSE],
       label = y[-train_rows])
   )
 }
