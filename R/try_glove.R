@@ -30,11 +30,7 @@ download_vector_file <- function(type = "twitter") {
   }
 }
 
-vector_file = "~/text8"
-if (!file.exists(vector_file)) {
-  download.file("http://mattmahoney.net/dc/text8.zip", "~/text8.zip")
-  unzip ("~/text8.zip", files = "text8", exdir = "~/")
-}
+
 
 create_embedding_matrix2 <- function(text,
                                      vector_type = "twitter"
