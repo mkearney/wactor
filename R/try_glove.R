@@ -33,7 +33,7 @@ download_vector_file <- function(type = "twitter") {
 
 
 create_embedding_matrix2 <- function(text,
-                                     vector_type = "twitter"
+                                     vector_type = "twitter",
                                      vector_file = NULL) {
   text <- tolower(text)
   tokens <- text2vec::space_tokenizer(text)
