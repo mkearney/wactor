@@ -33,7 +33,7 @@ download_vector_file <- function(type = "twitter") {
 
 
 create_embedding_matrix2 <- function(text,
-                                     vector_type = "twitter"
+                                     vector_type = "twitter",
                                      vector_file = NULL) {
   text <- tolower(text)
   tokens <- text2vec::space_tokenizer(text)
@@ -43,7 +43,7 @@ create_embedding_matrix2 <- function(text,
   word_index$idx <- seq.int(nrow(word_index))
   ## read pretrained vectors
   if(!is.null(vector_file)) {
-    if(vector_type == "twitter") {
+    if (vector_type == "twitter") {
       vector_file <- "glove.6B/glove.6B.50d.txt"
       lines <- readLines(file.path(vector_file))
       lines_split <- strsplit(lines, split = " ")
