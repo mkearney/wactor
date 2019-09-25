@@ -1,5 +1,17 @@
 
-
+#' Configure vectorizer
+#'
+#' Create a vectorizer object
+#'
+#' @param x Data (character vector where each observation is a document of text)
+#'   that will be tokenized and used to build a dictionary. For machine learning
+#'   models, this should include only the training data.
+#' @param tokenizer Function used to tokenize text.
+#' @param max_words Maximum number of words/tokens to use.
+#' @param doc_prop_max Maximum proportion of documents in which term appears
+#' @param doc_prop_min Minimum proportion of documents in which term appears
+#' @return A vectorizer
+#' @export
 config_vectorizer <- function(x, tokenizer = NULL,
                               max_words = 20000,
                               doc_prop_max = 1.00,

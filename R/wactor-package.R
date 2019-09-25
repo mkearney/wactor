@@ -6,9 +6,3 @@
 ## usethis namespace: start
 ## usethis namespace: end
 NULL
-
-## usethis namespace: start
-#' @importFrom Rcpp sourceCpp
-#' @useDynLib wactor, .registration = TRUE
-## usethis namespace: end
-NULL
