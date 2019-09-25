@@ -10,3 +10,4 @@ append_class <- function(x, ...) {
     y
   else x
 }
+is_null <- function(x) is.null(x)
