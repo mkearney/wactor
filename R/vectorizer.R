@@ -111,34 +111,6 @@ add_train_rows <- function(x, p = 0.8) {
   x
 }
 
-vectorize <- function(x, ..., .args = NULL) {
-  f <- dplyr::select(x, ...)
-  x <- x[!names(x) %in% names(f)]
-  num <- dapr::vap_lgl(x, is.numeric)
-  chr <- x[!num]
-  x <- model.matrix(~ ., x[num])
-  if (is.null(.args)) {
-    .args <- list()
-  }
-  vs <- dapr::ilap(f, ~ {
-    .args$x <- f[[.i]]
-    v <- do.call(config_vectorizer, .args)
-    .x <- v$tfidf(f[[.i]])
-    colnames(.x) <- paste0("v", .i, colnames(.x))
-    attr(.x, "vectorizer") <- v
-    .x
-  })
-  x <- Reduce(cbind, vs, x)
-  if (NROW(chr) > 0) {
-    x <- data.table::as.data.table(as.matrix(x))
-    chr <- data.table::as.data.table(chr)
-    x <- cbind(chr, x)
-  }
-  x
-}
-
-
-
 levels.vactor <- function(x) attr(x, "levels")
 
 vactor <- function(x, levels = NULL, ...) {

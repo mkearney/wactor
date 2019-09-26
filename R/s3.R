@@ -16,6 +16,25 @@ as_wactor.default <- function(.x, ...) {
   Wactor$new(.x, ...)
 }
 
+
+#' Create wactor
+#'
+#' Create an object of type 'wactor'
+#'
+#' @param .x Input text vector
+#' @param ... Other args passed to Wactor$new(...)
+#' @return An object of type wactor
+#' @export
+wactor <- function(.x, ...) {
+  UseMethod("wactor")
+}
+
+#' @export
+wactor.default <- function(.x, ...) {
+  Wactor$new(.x, ...)
+}
+
+
 #' Term frequency inverse document frequency
 #'
 #' Converts character vector into a term frequency inverse document frequency

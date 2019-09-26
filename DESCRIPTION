@@ -15,11 +15,10 @@ Imports:
     xgboost,
     tokenizers,
     text2vec,
-    rlang,
-    dapr,
-    data.table,
-    dplyr,
-    R6
+    R6,
+    utils,
+    tibble,
+    ggplot2
 URL: https://github.com/mkearney/wactor
 BugReports: https://github.com/mkearney/wactor/issues
 RoxygenNote: 6.1.1

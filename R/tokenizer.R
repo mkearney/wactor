@@ -6,7 +6,7 @@ as_fun <- function(x) {
 
   ## convert string to function
   if (is.character(x)) {
-    x <- get(x, envir = rlang::caller_env())
+    x <- get(x, envir = caller_env())
   } else {
     x <- eval(x)
   }
