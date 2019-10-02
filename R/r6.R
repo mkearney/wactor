@@ -1,5 +1,9 @@
+#' A wactor object
+#'
+#' A factor-like class for word vectors
+#'
 #' @export
-Wactor <- R6::R6Class("wactor", list(
+Wactr <- R6::R6Class("wactor", list(
   .text = NULL,
   .vectorizer = NULL,
   .vocab = NULL,
@@ -15,9 +19,9 @@ Wactor <- R6::R6Class("wactor", list(
                          doc_prop_max = 0.950,
                          doc_prop_min = 0.001,
                          ...) {
-    if (!is.null(train_rows <- get_train_rows(text))) {
-      text <- text[train_rows]
-    }
+    # if (!is.null(train_rows <- get_train_rows(text))) {
+    #   text <- text[train_rows]
+    # }
     self$.text <- text
 
     ## create/config tokenizer
@@ -56,7 +60,7 @@ Wactor <- R6::R6Class("wactor", list(
     ## fit on data
     msd <- self$.tfidf$fit_transform(self$dtm(self$.text))
     self$.tfidf_m <- apply(msd, 2, mean)
-    self$.tfidf_sd <- apply(msd, 2, sd)
+    self$.tfidf_sd <- apply(msd, 2, std_dev)
 
     ## export function for creating tfidfs
     self$tfidf <- function(x, normalize = TRUE) {
@@ -69,11 +73,12 @@ Wactor <- R6::R6Class("wactor", list(
 
     ## return self
     self
-  },
-  print = function(...) {
-    len <- length(self$.vocab$term)
-    x <- as.data.frame(self)
-    attr(x, "len") <- len
-    print(x, ...)
-  })
+  }
+  # print = function(...) {
+  #   len <- length(self$.vocab$term)
+  #   x <- as.data.frame(self)
+  #   attr(x, "len") <- len
+  #   print(x, ...)
+  # }
+  )
 )

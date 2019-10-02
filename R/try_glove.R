@@ -24,8 +24,10 @@ download_vector_file <- function(type = "twitter") {
   if(type == "twitter") {
     vector_file = "~/glove.twitter.27B"
     if (!file.exists(vector_file)) {
-      download.file("http://nlp.stanford.edu/data/glove.twitter.27B.zip", "~/glove.twitter.27B.zip")
-      unzip ("~/glove.twitter.27B.zip", files = "glove.twitter.27B", exdir = "~/")
+      utils::download.file("http://nlp.stanford.edu/data/glove.twitter.27B.zip",
+        "~/glove.twitter.27B.zip")
+      utils::unzip("~/glove.twitter.27B.zip", files = "glove.twitter.27B",
+        exdir = "~/")
     }
   }
 }

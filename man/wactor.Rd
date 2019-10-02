@@ -9,7 +9,7 @@ wactor(.x, ...)
 \arguments{
 \item{.x}{Input text vector}
 
-\item{...}{Other args passed to Wactor$new(...)}
+\item{...}{Other args passed to Wactr$new(...)}
 }
 \value{
 An object of type wactor

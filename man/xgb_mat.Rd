@@ -17,5 +17,5 @@ xgb_mat(x, ..., y = NULL, split = NULL)
 train and test}
 }
 \description{
-Creates C-style xgb matrix
+Simple wrapper for creating a xgboost matrix
 }

@@ -60,34 +60,40 @@ s2 <- c(
 )
 ```
 
-Use `Wactorizer` (an R6 object) to convert the text strings into numeric vector/matrices:
+Use `wactor()` to convert a character vector into numeric vectors/matrix:
 
 ```{r}
 ## create wactor
-w <- Wactor$new(s1)
+w <- wactor(s1)
 ```
 
 Get the document term frequency matrix
 
 ```{r}
 ## term frequency–inverse document frequency
-w$dtm(s1)
+dtm(w)
+
+## same thing as dtm
+predict(w)
 ```
 
 or term frequency–inverse document frequency matrix
 
 ```{r}
 ## apply to other data
-w$tfidf(s2)
+tfidf(w)
 ```
 
-Or apply the wactor object to new data
+Or apply the wactor on **new data**
 
 ```{r}
-## document term frequecy
-w$dtm(s2)
+## document term frequecy of new data
+dtm(w, s2)
 
-## term frequency–inverse document frequency
-w$tfidf(s2)
+## same thing as dtm
+predict(w, s2)
+
+## term frequency–inverse document frequency of new data
+tfidf(w, s2)
 ```
 

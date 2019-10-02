@@ -4,7 +4,7 @@
 #' Convert data into object of type 'wactor'
 #'
 #' @param .x Input text vector
-#' @param ... Other args passed to Wactor$new(...)
+#' @param ... Other args passed to Wactr$new(...)
 #' @return An object of type wactor
 #' @export
 as_wactor <- function(.x, ...) {
@@ -13,7 +13,7 @@ as_wactor <- function(.x, ...) {
 
 #' @export
 as_wactor.default <- function(.x, ...) {
-  Wactor$new(.x, ...)
+  Wactr$new(.x, ...)
 }
 
 
@@ -22,7 +22,7 @@ as_wactor.default <- function(.x, ...) {
 #' Create an object of type 'wactor'
 #'
 #' @param .x Input text vector
-#' @param ... Other args passed to Wactor$new(...)
+#' @param ... Other args passed to Wactr$new(...)
 #' @return An object of type wactor
 #' @export
 wactor <- function(.x, ...) {
@@ -31,7 +31,7 @@ wactor <- function(.x, ...) {
 
 #' @export
 wactor.default <- function(.x, ...) {
-  Wactor$new(.x, ...)
+  Wactr$new(.x, ...)
 }
 
 
@@ -48,7 +48,7 @@ tfidf <- function(object, .x = NULL) UseMethod("tfidf")
 
 #' @export
 tfidf.wactor <- function(object, .x = NULL) {
-  object$tfidf(.x %||% w$.text)
+  object$tfidf(.x %||% object$.text)
 }
 
 #' Document term frequency
@@ -63,16 +63,16 @@ dtm <- function(object, .x = NULL) UseMethod("dtm")
 
 #' @export
 dtm.wactor <- function(object, .x = NULL) {
-  object$dtm(.x %||% w$.text)
+  object$dtm(.x %||% object$.text)
 }
 
 #' @export
-predict.wactor <- function(object, .x = NULL) {
-  dtm(object, .x)
+predict.wactor <- function(object, ...) {
+  dtm(object, ...)
 }
 
 #' @export
-summary.wactor <- function(object, .x) {
+summary.wactor <- function(object, ...) {
   len <- length(object$.vocab$term)
   x <- as.data.frame(object)
   attr(x, "len") <- len
@@ -80,10 +80,27 @@ summary.wactor <- function(object, .x) {
 }
 
 #' @export
-plot.wactor <- function(object, n = 20) {
-  x <- utils::head(as.data.frame(object), n)
+plot.wactor <- function(x, n = 20, ...) {
+  x <- utils::head(as.data.frame(x), n)
   x$term <- factor(x$term, levels = rev(unique(x$term)))
   ggplot2::ggplot(x, ggplot2::aes(x = term, y = term_count)) +
     ggplot2::geom_col() +
     ggplot2::coord_flip()
+}
+
+#' @export
+as.data.frame.wactor <- function(x, ...) {
+  tibble::as_tibble(x$.vocab)
+}
+
+#' @export
+levels.wactor <- function(x) x$.vocab
+
+
+#' @export
+print.wactor <- function(x, ...) {
+  len <- length(x$.text)
+  x <- as.data.frame(x)
+  attr(x, "len") <- len
+  print(x, ...)
 }
