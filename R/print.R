@@ -17,9 +17,11 @@ print.wactor <- function(x, ...) {
   attr(x, "len") <- len
   print(x, ...)
 }
+
 format_wactor_num <- function(x) {
   prettyNum(x, big.mark = ",")
 }
+
 format_wactor_nums <- function(x) {
   paste0(
     format_wactor_num(nrow(x)), " (words) x ",

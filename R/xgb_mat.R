@@ -1,6 +1,6 @@
 #' xgb matrix
 #'
-#' Creates C-style xgb matrix
+#' Simple wrapper for creating a xgboost matrix
 #'
 #' @param x Input data
 #' @param ... Other data to cbind
