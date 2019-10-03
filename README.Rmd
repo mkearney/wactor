@@ -119,6 +119,8 @@ below uses the previously split [into test/train] text data `d` described above.
 w <- wactor(d$train$x)
 ```
 
+### `dtm()`
+
 Get the document term frequency matrix
 
 ```{r}
@@ -128,6 +130,8 @@ dtm(w)
 ## same thing as dtm
 predict(w)
 ```
+
+### `tfidf()`
 
 or term frequency–inverse document frequency matrix
 
