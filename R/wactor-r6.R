@@ -105,7 +105,7 @@ Wactr <- R6::R6Class("wactor", list(
 
     ## fit on data
     msd <- self$.tfidf$fit_transform(self$dtm(self$.text))
-    self$.tfidf_m <- apply(msd, 2, mean)
+    self$.tfidf_m <- apply(msd, 2, the_mean)
     self$.tfidf_sd <- apply(msd, 2, std_dev)
 
     ## export function for creating tfidfs

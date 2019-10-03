@@ -1,9 +1,13 @@
 std_dev <- function(x, na.rm = TRUE) {
-  sqrt(variance(x, na.rm = na.rm))
+  cppsd(x, na.rm)
 }
 
 variance <- function(x, na.rm = TRUE) {
-  cppvariance(x, na.rm)
+  cppvar(x, na.rm)
+}
+
+the_mean <- function(x, na.rm = TRUE) {
+  cppmean(x, na.rm)
 }
 
 
@@ -28,13 +32,13 @@ caller_env <- function(n = 1) {
 }
 
 
-scale_with_params <- function(x, m, sd) {
+scale_with_params <- function(x, m, std) {
   ncol <- length(m)
   nrow <- nrow(x)
   (x - matrix(m,
     nrow = nrow,
     ncol = ncol,
-    byrow = TRUE)) / matrix(sd,
+    byrow = TRUE)) / matrix(std,
       nrow = nrow,
       ncol = ncol,
       byrow = TRUE)

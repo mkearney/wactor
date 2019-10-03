@@ -6,23 +6,65 @@ using namespace Rcpp;
 #include <numeric>
 
 // [[Rcpp::export]]
-double cppvariance(NumericVector x, const bool narm = true) {
-
-  // Omit missing values if called for
+long double cppvar(NumericVector x, const bool narm = true) {
+  // deal with missingness
   if (narm) {
     x = na_omit(x);
   }
+
+  // number of obs
   size_t sz = x.size();
   if (sz == 1)
     return 0.0;
 
-  // Calculate the mean
-  double mean = std::accumulate(x.begin(), x.end(), 0.0) / sz;
+  // calculate the mean
+  long double mean = std::accumulate(x.begin(), x.end(), 0.0) / sz;
 
-  // Now calculate the variance
-  auto variance_func = [&mean, &sz](double accumulator, const double& val) {
-    return accumulator + ((val - mean) * (val - mean) / (sz - 1));
-  };
+  // calculate the variance
+  return std::accumulate((*&x).begin(), (*&x).end(), 0.0,
+    // Lambda expression begins
+    [&mean, &sz](long double accumulator, const long double& val) {
+      return accumulator + ((val - mean) * (val - mean) / (sz - 1));
+    } // Lambda expression ends
+  );
+}
 
-  return std::accumulate(x.begin(), x.end(), 0.0, variance_func);
+// [[Rcpp::export]]
+long double cppsd(NumericVector x, const bool narm = true) {
+  // deal with missingness
+  if (narm) {
+    x = na_omit(x);
+  }
+
+  // number of obs
+  size_t sz = x.size();
+  if (sz == 1)
+    return 0.0;
+
+  // calculate the mean
+  long double mean = std::accumulate(x.begin(), x.end(), 0.0) / sz;
+
+  // calculate the variance
+  return sqrt(std::accumulate(x.begin(), x.end(), 0.0,
+    // Lambda expression begins
+    [&mean, &sz](long double accumulator, const long double& val) {
+      return accumulator + ((val - mean) * (val - mean) / (sz - 1));
+    } // Lambda expression ends
+  ));
+}
+
+// [[Rcpp::export]]
+long double cppmean(NumericVector x, const bool narm = true) {
+  // deal with missingness
+  if (narm) {
+    x = na_omit(x);
+  }
+
+  // number of obs
+  size_t sz = x.size();
+  if (sz == 1)
+    return 0.0;
+
+  // calculate the mean
+  return std::accumulate(x.begin(), x.end(), 0.0) / sz;
 }

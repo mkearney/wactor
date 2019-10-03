@@ -5,21 +5,47 @@
 
 using namespace Rcpp;
 
-// cppvariance
-double cppvariance(NumericVector x, const bool narm);
-RcppExport SEXP _wactor_cppvariance(SEXP xSEXP, SEXP narmSEXP) {
+// cppvar
+long double cppvar(NumericVector x, const bool narm);
+RcppExport SEXP _wactor_cppvar(SEXP xSEXP, SEXP narmSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
     Rcpp::traits::input_parameter< const bool >::type narm(narmSEXP);
-    rcpp_result_gen = Rcpp::wrap(cppvariance(x, narm));
+    rcpp_result_gen = Rcpp::wrap(cppvar(x, narm));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cppsd
+long double cppsd(NumericVector x, const bool narm);
+RcppExport SEXP _wactor_cppsd(SEXP xSEXP, SEXP narmSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const bool >::type narm(narmSEXP);
+    rcpp_result_gen = Rcpp::wrap(cppsd(x, narm));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cppmean
+long double cppmean(NumericVector x, const bool narm);
+RcppExport SEXP _wactor_cppmean(SEXP xSEXP, SEXP narmSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const bool >::type narm(narmSEXP);
+    rcpp_result_gen = Rcpp::wrap(cppmean(x, narm));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_wactor_cppvariance", (DL_FUNC) &_wactor_cppvariance, 2},
+    {"_wactor_cppvar", (DL_FUNC) &_wactor_cppvar, 2},
+    {"_wactor_cppsd", (DL_FUNC) &_wactor_cppsd, 2},
+    {"_wactor_cppmean", (DL_FUNC) &_wactor_cppmean, 2},
     {NULL, NULL, 0}
 };
 
