@@ -1,3 +1,49 @@
+
+as_fun <- function(x) {
+  if (is.function(x)) {
+    return(x)
+  }
+
+  ## convert string to function
+  if (is.character(x)) {
+    x <- get(x, envir = caller_env())
+  } else {
+    x <- eval(x)
+  }
+  ## check and return function call
+  stopifnot(is.function(x))
+  x
+}
+
+validate_tokenizer_ <- function(x) {
+
+  ## if function then return
+  if (tryCatch(is.function(x),
+    error = function(e) FALSE)) {
+    return(prepend_class(x, "tokenizer"))
+  }
+
+  ## if null, return default tokenizer otherwise validate function
+  if (is.null(x)) {
+    x <- function(x) tokenizers::tokenize_words(x, lowercase = TRUE)
+  } else {
+    x <- as_fun(x)
+  }
+
+  ## return as tokenizer function
+  prepend_class(x, "tokenizer")
+}
+
+##
+validate_tokenizer <- function(tokenizer = NULL) {
+
+  ## validate and fix commmon tokenizer spec problem
+  tokenizer <- validate_tokenizer_(tokenizer)
+
+  ## return
+  tokenizer
+}
+
 #' A wactor object
 #'
 #' A factor-like class for word vectors
@@ -16,8 +62,8 @@ Wactr <- R6::R6Class("wactor", list(
   initialize  = function(text = character(),
                          tokenizer = NULL,
                          max_words = 1000,
-                         doc_prop_max = 0.950,
-                         doc_prop_min = 0.001,
+                         doc_prop_max = 1.000,
+                         doc_prop_min = 0.000,
                          ...) {
     # if (!is.null(train_rows <- get_train_rows(text))) {
     #   text <- text[train_rows]
@@ -74,11 +120,5 @@ Wactr <- R6::R6Class("wactor", list(
     ## return self
     self
   }
-  # print = function(...) {
-  #   len <- length(self$.vocab$term)
-  #   x <- as.data.frame(self)
-  #   attr(x, "len") <- len
-  #   print(x, ...)
-  # }
   )
 )

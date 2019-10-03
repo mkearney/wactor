@@ -39,3 +39,15 @@ scale_with_params <- function(x, m, sd) {
       ncol = ncol,
       byrow = TRUE)
 }
+
+sampleit <- function(x, n) {
+  if (!is.list(x)) {
+    sort(sample(x, n))
+  } else {
+    sort(unlist(lapply(x, sample, round(n / length(x)), 0), use.names = FALSE))
+  }
+}
+
+capture_dots <- function(...) {
+  eval(substitute(alist(...)), envir = parent.frame())
+}

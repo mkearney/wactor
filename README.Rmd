@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
-options(width = 120)
+options(width = 104)
 ```
 # wactor
 
@@ -48,23 +48,75 @@ Here's some basic text (e.g., natural language) data:
 library(wactor)
 
 ## text data (sentences)
-s1 <- c(
+x <- c(
   "This test is a test",
   "This one will be a test",
-  "This this was a test"
-)
-s2 <- c(
+  "This this was a test",
+  "And this is the fourth test",
+  "Fifth: the test!",
+  "And the sixth test",
+  "This is the seventh test",
   "This test is going to be a test",
   "This one will have been a test",
   "This this has been a test"
 )
+
+## for demonstration purposes, store as a data frame as well
+data <- tibble::tibble(
+  text = x,
+  value = rnorm(length(x)),
+  z = c(rep(TRUE, 7), rep(FALSE, 3))
+)
 ```
 
-Use `wactor()` to convert a character vector into numeric vectors/matrix:
+
+### `split_test_train()`
+
+A convenience function for splitting an input object into test and train data 
+frames. This is often useful for splitting a single data frame:
+
+```{r}
+## split into test/train data sets
+split_test_train(data)
+```
+
+By default, `split_test_train()` returns 80% of the input data in the `train`
+data set and 20% of the input data in the `test` data set. This proportion of
+data used in the returned training data can be adjusted via the `.p` argument:
+
+```{r}
+## split into test/train data sets–with 70% of data in training set
+split_test_train(data, .p = 0.70)
+```
+
+When predicting categorical variables, it's often desireable to ensure the 
+training data set has an even number of observations for each level in the 
+response variable. This can be achieved by indicating the [column] name of the 
+categorical response variable using tidy evaluation. This will prioritize evenly
+balanced observations over the specified proportion in training data:
+
+```{r}
+## ensure evenly balanced groups in `train` data set
+split_test_train(data, .p = 0.70, z)
+```
+
+The `split_test_train()` doesn't only work on data frames. It's also possible to 
+split atomic vectors (i.e., character, numeric, logical):
+
+```{r}
+## OR split character vector into test/train data sets
+(d <- split_test_train(x))
+```
+
+
+### `wactor()`
+
+Use `wactor()` to convert a character vector into a `wactor` object. The code
+below uses the previously split [into test/train] text data `d` described above.
 
 ```{r}
 ## create wactor
-w <- wactor(s1)
+w <- wactor(d$train$x)
 ```
 
 Get the document term frequency matrix
@@ -88,12 +140,12 @@ Or apply the wactor on **new data**
 
 ```{r}
 ## document term frequecy of new data
-dtm(w, s2)
+dtm(w, d$test$x)
 
 ## same thing as dtm
-predict(w, s2)
+predict(w, d$test$x)
 
 ## term frequency–inverse document frequency of new data
-tfidf(w, s2)
+tfidf(w, d$test$x)
 ```
 
