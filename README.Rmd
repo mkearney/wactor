@@ -158,3 +158,49 @@ predict(w, d$test$x)
 tfidf(w, d$test$x)
 ```
 
+
+### `xgb_mat`
+
+The wactor package also makes it easy to work with the 
+[{xgboost}](https://github.com/dmlc/xgboost) package:
+
+```{r}
+## convert tfidf matrix into xgb.DMatrix
+xgb_mat(tfidf(w, d$test$x))
+```
+
+The `xgb_mat()` function also allows users to specify a response/label/outcome
+vector, e.g.:
+
+```{r}
+## include a response variable
+xgb_mat(tfidf(w, d$train$x), y = c(rep(0, 4), rep(1, 4)))
+```
+
+To return split (into test and train) data, specify a value between 0-1 to set
+the proportion of observations that should appear in the training data set:
+
+```{r}
+## split into test/train
+xgb_data <- xgb_mat(tfidf(w, d$train$x), y = c(rep(0, 4), rep(1, 4)), split = 0.8)
+```
+
+The object returned by `xgb_mat()` can then easily be passed to {xgboost}
+functions for powerful and fast machine learning!
+
+```{r}
+## specify hyper params
+params <- list(
+  max_depth = 2,
+  eta = 0.25,
+  objective = "binary:logistic"
+)
+
+## init training
+xgboost::xgb.train(
+  params,
+  xgb_data$train,
+  nrounds = 4,
+  watchlist = xgb_data)
+```
+
