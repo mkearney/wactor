@@ -5,6 +5,16 @@
 
 <!-- badges: start -->
 
+[![Travis build
+status](https://travis-ci.org/mkearney/wactor.svg?branch=master)](https://travis-ci.org/mkearney/wactor)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/mkearney/wactor?branch=master&svg=true)](https://ci.appveyor.com/project/mkearney/wactor)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/wactor)](https://CRAN.R-project.org/package=wactor)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Codecov test
+coverage](https://codecov.io/gh/mkearney/wactor/branch/master/graph/badge.svg)](https://codecov.io/gh/mkearney/wactor?branch=master)
 <!-- badges: end -->
 
 A user-friendly factor-like interface for converting strings of text
@@ -74,21 +84,21 @@ split_test_train(data)
 #> # A tibble: 8 x 3
 #>   text                             value z    
 #>   <chr>                            <dbl> <lgl>
-#> 1 This test is a test              2.26  TRUE 
-#> 2 This one will be a test         -0.658 TRUE 
-#> 3 And this is the fourth test      0.328 TRUE 
-#> 4 Fifth: the test!                 2.00  TRUE 
-#> 5 This is the seventh test         0.293 TRUE 
-#> 6 This test is going to be a test -1.23  FALSE
-#> 7 This one will have been a test  -0.510 FALSE
-#> 8 This this has been a test       -0.275 FALSE
+#> 1 This test is a test             -0.650 TRUE 
+#> 2 This this was a test             1.00  TRUE 
+#> 3 And this is the fourth test     -2.56  TRUE 
+#> 4 And the sixth test               0.133 TRUE 
+#> 5 This is the seventh test        -0.118 TRUE 
+#> 6 This test is going to be a test  0.332 FALSE
+#> 7 This one will have been a test  -0.168 FALSE
+#> 8 This this has been a test        0.932 FALSE
 #> 
 #> $test
 #> # A tibble: 2 x 3
-#>   text                  value z    
-#>   <chr>                 <dbl> <lgl>
-#> 1 This this was a test -0.574 TRUE 
-#> 2 And the sixth test   -0.739 TRUE
+#>   text                     value z    
+#>   <chr>                    <dbl> <lgl>
+#> 1 This one will be a test -0.768 TRUE 
+#> 2 Fifth: the test!        -1.36  TRUE
 ```
 
 By default, `split_test_train()` returns 80% of the input data in the
@@ -101,23 +111,23 @@ via the `.p` argument:
 split_test_train(data, .p = 0.70)
 #> $train
 #> # A tibble: 7 x 3
-#>   text                            value z    
-#>   <chr>                           <dbl> <lgl>
-#> 1 This test is a test             2.26  TRUE 
-#> 2 And this is the fourth test     0.328 TRUE 
-#> 3 Fifth: the test!                2.00  TRUE 
-#> 4 And the sixth test             -0.739 TRUE 
-#> 5 This is the seventh test        0.293 TRUE 
-#> 6 This one will have been a test -0.510 FALSE
-#> 7 This this has been a test      -0.275 FALSE
+#>   text                             value z    
+#>   <chr>                            <dbl> <lgl>
+#> 1 This test is a test             -0.650 TRUE 
+#> 2 This this was a test             1.00  TRUE 
+#> 3 And this is the fourth test     -2.56  TRUE 
+#> 4 Fifth: the test!                -1.36  TRUE 
+#> 5 This is the seventh test        -0.118 TRUE 
+#> 6 This test is going to be a test  0.332 FALSE
+#> 7 This this has been a test        0.932 FALSE
 #> 
 #> $test
 #> # A tibble: 3 x 3
-#>   text                             value z    
-#>   <chr>                            <dbl> <lgl>
-#> 1 This one will be a test         -0.658 TRUE 
-#> 2 This this was a test            -0.574 TRUE 
-#> 3 This test is going to be a test -1.23  FALSE
+#>   text                            value z    
+#>   <chr>                           <dbl> <lgl>
+#> 1 This one will be a test        -0.768 TRUE 
+#> 2 And the sixth test              0.133 TRUE 
+#> 3 This one will have been a test -0.168 FALSE
 ```
 
 When predicting categorical variables, it’s often desireable to ensure
@@ -134,21 +144,21 @@ split_test_train(data, .p = 0.70, z)
 #> # A tibble: 6 x 3
 #>   text                             value z    
 #>   <chr>                            <dbl> <lgl>
-#> 1 And this is the fourth test      0.328 TRUE 
-#> 2 And the sixth test              -0.739 TRUE 
-#> 3 This is the seventh test         0.293 TRUE 
-#> 4 This test is going to be a test -1.23  FALSE
-#> 5 This one will have been a test  -0.510 FALSE
-#> 6 This this has been a test       -0.275 FALSE
+#> 1 This test is a test             -0.650 TRUE 
+#> 2 Fifth: the test!                -1.36  TRUE 
+#> 3 This is the seventh test        -0.118 TRUE 
+#> 4 This test is going to be a test  0.332 FALSE
+#> 5 This one will have been a test  -0.168 FALSE
+#> 6 This this has been a test        0.932 FALSE
 #> 
 #> $test
 #> # A tibble: 4 x 3
-#>   text                     value z    
-#>   <chr>                    <dbl> <lgl>
-#> 1 This test is a test      2.26  TRUE 
-#> 2 This one will be a test -0.658 TRUE 
-#> 3 This this was a test    -0.574 TRUE 
-#> 4 Fifth: the test!         2.00  TRUE
+#>   text                         value z    
+#>   <chr>                        <dbl> <lgl>
+#> 1 This one will be a test     -0.768 TRUE 
+#> 2 This this was a test         1.00  TRUE 
+#> 3 And this is the fourth test -2.56  TRUE 
+#> 4 And the sixth test           0.133 TRUE
 ```
 
 The `split_test_train()` doesn’t only work on data frames. It’s also
@@ -164,9 +174,9 @@ possible to split atomic vectors (i.e., character, numeric, logical):
 #> 1 This test is a test           
 #> 2 This one will be a test       
 #> 3 This this was a test          
-#> 4 And this is the fourth test   
-#> 5 Fifth: the test!              
-#> 6 And the sixth test            
+#> 4 Fifth: the test!              
+#> 5 And the sixth test            
+#> 6 This is the seventh test      
 #> 7 This one will have been a test
 #> 8 This this has been a test     
 #> 
@@ -174,7 +184,7 @@ possible to split atomic vectors (i.e., character, numeric, logical):
 #> # A tibble: 2 x 1
 #>   x                              
 #>   <chr>                          
-#> 1 This is the seventh test       
+#> 1 And this is the fourth test    
 #> 2 This test is going to be a test
 ```
 
@@ -199,28 +209,28 @@ dtm(w)
 #> 8 x 16 sparse Matrix of class "dgCMatrix"
 #>    [[ suppressing 16 column names 'test', 'this', 'a' ... ]]
 #>                                  
-#> 1 2 1 1 . . . . 1 . . . . . . . .
-#> 2 1 1 1 . . . 1 . 1 . . . . . 1 .
-#> 3 1 2 1 . . . . . . . . . . . . 1
-#> 4 1 1 . 1 . 1 . 1 . . . . 1 . . .
-#> 5 1 . . 1 . . . . . . . . . 1 . .
-#> 6 1 . . 1 . 1 . . . 1 . . . . . .
-#> 7 1 1 1 . 1 . 1 . 1 . . 1 . . . .
-#> 8 1 2 1 . 1 . . . . . 1 . . . . .
+#> 1 2 1 1 . . . 1 . . . . . . . . .
+#> 2 1 1 1 . . 1 . 1 . . . . . 1 . .
+#> 3 1 2 1 . . . . . . . . . . . 1 .
+#> 4 1 . . 1 . . . . . . . . 1 . . .
+#> 5 1 . . 1 . . . . 1 . . 1 . . . .
+#> 6 1 1 . 1 . . 1 . . . . . . . . 1
+#> 7 1 1 1 . 1 1 . 1 . . 1 . . . . .
+#> 8 1 2 1 . 1 . . . . 1 . . . . . .
 
 ## same thing as dtm
 predict(w)
 #> 8 x 16 sparse Matrix of class "dgCMatrix"
 #>    [[ suppressing 16 column names 'test', 'this', 'a' ... ]]
 #>                                  
-#> 1 2 1 1 . . . . 1 . . . . . . . .
-#> 2 1 1 1 . . . 1 . 1 . . . . . 1 .
-#> 3 1 2 1 . . . . . . . . . . . . 1
-#> 4 1 1 . 1 . 1 . 1 . . . . 1 . . .
-#> 5 1 . . 1 . . . . . . . . . 1 . .
-#> 6 1 . . 1 . 1 . . . 1 . . . . . .
-#> 7 1 1 1 . 1 . 1 . 1 . . 1 . . . .
-#> 8 1 2 1 . 1 . . . . . 1 . . . . .
+#> 1 2 1 1 . . . 1 . . . . . . . . .
+#> 2 1 1 1 . . 1 . 1 . . . . . 1 . .
+#> 3 1 2 1 . . . . . . . . . . . 1 .
+#> 4 1 . . 1 . . . . . . . . 1 . . .
+#> 5 1 . . 1 . . . . 1 . . 1 . . . .
+#> 6 1 1 . 1 . . 1 . . . . . . . . 1
+#> 7 1 1 1 . 1 1 . 1 . . 1 . . . . .
+#> 8 1 2 1 . 1 . . . . 1 . . . . . .
 ```
 
 ### `tfidf()`
@@ -231,24 +241,24 @@ or term frequency–inverse document frequency matrix
 ## apply to other data
 tfidf(w)
 #> 8 x 16 Matrix of class "dgeMatrix"
-#>         test        this          a        the       been        and        one         is       will
-#> 1 -1.8474621  0.16912752  0.9772545 -0.6851065 -0.5379438 -0.5262117 -0.5379438  1.8066446 -0.5379438
-#> 2  0.6627810 -0.06765101  0.6172134 -0.6851065 -0.5379438 -0.5262117  1.7793527 -0.5371105  1.7793527
-#> 3  0.3041749  1.58979872  0.9772545 -0.6851065 -0.5379438 -0.5262117 -0.5379438 -0.5371105 -0.5379438
-#> 4  0.6627810 -0.06765101 -1.1829923  0.5328606 -0.5379438  1.1576657 -0.5379438  1.4160187 -0.5379438
-#> 5 -1.1302498 -1.25154367 -1.1829923  1.7508276 -0.5379438 -0.5262117 -0.5379438 -0.5371105 -0.5379438
-#> 6 -0.2337344 -1.25154367 -1.1829923  1.1418441 -0.5379438  1.9996044 -0.5379438 -0.5371105 -0.5379438
-#> 7  0.9189283 -0.23677853  0.3600411 -0.6851065  1.4483103 -0.5262117  1.4483103 -0.5371105  1.4483103
-#> 8  0.6627810  1.11624165  0.6172134 -0.6851065  1.7793527 -0.5262117 -0.5379438 -0.5371105 -0.5379438
-#>        sixth        has       have     fourth      fifth         be        was
+#>         test        this          a        the       been        one         is       will      sixth
+#> 1 -1.8512527  0.13936089  0.9772545 -0.7001458 -0.5379438 -0.5379438  1.6201852 -0.5379438 -0.3535534
+#> 2  0.7266907 -0.09713032  0.6172134 -0.7001458 -0.5379438  1.7793527 -0.5400617  1.7793527 -0.3535534
+#> 3  0.3584130  1.55830815  0.9772545 -0.7001458 -0.5379438 -0.5379438 -0.5400617 -0.5379438 -0.3535534
+#> 4 -1.1146974 -1.27958637 -1.1829923  1.6833293 -0.5379438 -0.5379438 -0.5400617 -0.5379438 -0.3535534
+#> 5 -0.1940034 -1.27958637 -1.1829923  1.0874605 -0.5379438 -0.5379438 -0.5400617 -0.5379438  2.4748737
+#> 6  0.3584130  0.13936089 -1.1829923  0.7299393 -0.5379438 -0.5379438  1.6201852 -0.5379438 -0.3535534
+#> 7  0.9897461 -0.26605261  0.3600411 -0.7001458  1.4483103  1.4483103 -0.5400617  1.4483103 -0.3535534
+#> 8  0.7266907  1.08532573  0.6172134 -0.7001458  1.7793527 -0.5379438 -0.5400617 -0.5379438 -0.3535534
+#>          has       have        and      fifth         be        was    seventh
 #> 1 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
-#> 2 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534
-#> 3 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737
+#> 2 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534 -0.3535534
+#> 3 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534
 #> 4 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534 -0.3535534 -0.3535534
-#> 5 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534 -0.3535534
-#> 6  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
-#> 7 -0.3535534 -0.3535534  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534
-#> 8 -0.3535534  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
+#> 5 -0.3535534 -0.3535534  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534
+#> 6 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737
+#> 7 -0.3535534  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
+#> 8  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
 ```
 
 Or apply the wactor on **new data**
@@ -259,24 +269,24 @@ dtm(w, d$test$x)
 #> 2 x 16 sparse Matrix of class "dgCMatrix"
 #>    [[ suppressing 16 column names 'test', 'this', 'a' ... ]]
 #>                                  
-#> 1 1 1 . 1 . . . 1 . . . . . . . .
-#> 2 2 1 1 . . . . 1 . . . . . . 1 .
+#> 1 1 1 . 1 . . 1 . . . . 1 . . . .
+#> 2 2 1 1 . . . 1 . . . . . . 1 . .
 
 ## same thing as dtm
 predict(w, d$test$x)
 #> 2 x 16 sparse Matrix of class "dgCMatrix"
 #>    [[ suppressing 16 column names 'test', 'this', 'a' ... ]]
 #>                                  
-#> 1 1 1 . 1 . . . 1 . . . . . . . .
-#> 2 2 1 1 . . . . 1 . . . . . . 1 .
+#> 1 1 1 . 1 . . 1 . . . . 1 . . . .
+#> 2 2 1 1 . . . 1 . . . . . . 1 . .
 
 ## term frequency–inverse document frequency of new data
 tfidf(w, d$test$x)
 #> 2 x 16 Matrix of class "dgeMatrix"
-#>         test        this          a        the       been        and        one       is       will
-#> 1 -0.2337344  0.52429532 -1.1829923  1.1418441 -0.5379438 -0.5262117 -0.5379438 2.392583 -0.5379438
-#> 2 -1.1302498 -0.06765101  0.6172134 -0.6851065 -0.5379438 -0.5262117 -0.5379438 1.416019 -0.5379438
-#>        sixth        has       have     fourth      fifth         be        was
-#> 1 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
-#> 2 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534
+#>        test        this          a        the       been        one       is       will      sixth
+#> 1  0.358413  0.13936089 -1.1829923  0.7299393 -0.5379438 -0.5379438 1.620185 -0.5379438 -0.3535534
+#> 2 -1.114697 -0.09713032  0.6172134 -0.7001458 -0.5379438 -0.5379438 1.260144 -0.5379438 -0.3535534
+#>          has       have        and      fifth         be        was    seventh
+#> 1 -0.3535534 -0.3535534  1.9091883 -0.3535534 -0.3535534 -0.3535534 -0.3535534
+#> 2 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534 -0.3535534
 ```

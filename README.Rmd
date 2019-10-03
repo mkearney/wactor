@@ -16,6 +16,11 @@ options(width = 104)
 # wactor
 
 <!-- badges: start -->
+[![Travis build status](https://travis-ci.org/mkearney/wactor.svg?branch=master)](https://travis-ci.org/mkearney/wactor)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/mkearney/wactor?branch=master&svg=true)](https://ci.appveyor.com/project/mkearney/wactor)
+[![CRAN status](https://www.r-pkg.org/badges/version/wactor)](https://CRAN.R-project.org/package=wactor)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Codecov test coverage](https://codecov.io/gh/mkearney/wactor/branch/master/graph/badge.svg)](https://codecov.io/gh/mkearney/wactor?branch=master)
 <!-- badges: end -->
 
 A user-friendly factor-like interface for converting strings of text into numeric vectors and rectangular data structures.
