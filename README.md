@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# wactor
+# wactor <img src='man/figures/logo.png' align="right" height="200" />
 
 <!-- badges: start -->
 
@@ -82,23 +82,23 @@ data frames. This is often useful for splitting a single data frame:
 split_test_train(data)
 #> $train
 #> # A tibble: 8 x 3
-#>   text                             value z    
-#>   <chr>                            <dbl> <lgl>
-#> 1 This test is a test             -0.650 TRUE 
-#> 2 This this was a test             1.00  TRUE 
-#> 3 And this is the fourth test     -2.56  TRUE 
-#> 4 And the sixth test               0.133 TRUE 
-#> 5 This is the seventh test        -0.118 TRUE 
-#> 6 This test is going to be a test  0.332 FALSE
-#> 7 This one will have been a test  -0.168 FALSE
-#> 8 This this has been a test        0.932 FALSE
+#>   text                              value z    
+#>   <chr>                             <dbl> <lgl>
+#> 1 This test is a test             -0.0691 TRUE 
+#> 2 This this was a test             1.21   TRUE 
+#> 3 Fifth: the test!                -1.59   TRUE 
+#> 4 And the sixth test               0.614  TRUE 
+#> 5 This is the seventh test         0.282  TRUE 
+#> 6 This test is going to be a test -0.446  FALSE
+#> 7 This one will have been a test   0.146  FALSE
+#> 8 This this has been a test       -0.0697 FALSE
 #> 
 #> $test
 #> # A tibble: 2 x 3
-#>   text                     value z    
-#>   <chr>                    <dbl> <lgl>
-#> 1 This one will be a test -0.768 TRUE 
-#> 2 Fifth: the test!        -1.36  TRUE
+#>   text                         value z    
+#>   <chr>                        <dbl> <lgl>
+#> 1 This one will be a test     -1.59  TRUE 
+#> 2 And this is the fourth test -0.760 TRUE
 ```
 
 By default, `split_test_train()` returns 80% of the input data in the
@@ -111,23 +111,23 @@ via the `.p` argument:
 split_test_train(data, .p = 0.70)
 #> $train
 #> # A tibble: 7 x 3
-#>   text                             value z    
-#>   <chr>                            <dbl> <lgl>
-#> 1 This test is a test             -0.650 TRUE 
-#> 2 This this was a test             1.00  TRUE 
-#> 3 And this is the fourth test     -2.56  TRUE 
-#> 4 Fifth: the test!                -1.36  TRUE 
-#> 5 This is the seventh test        -0.118 TRUE 
-#> 6 This test is going to be a test  0.332 FALSE
-#> 7 This this has been a test        0.932 FALSE
+#>   text                              value z    
+#>   <chr>                             <dbl> <lgl>
+#> 1 This one will be a test         -1.59   TRUE 
+#> 2 This this was a test             1.21   TRUE 
+#> 3 Fifth: the test!                -1.59   TRUE 
+#> 4 This is the seventh test         0.282  TRUE 
+#> 5 This test is going to be a test -0.446  FALSE
+#> 6 This one will have been a test   0.146  FALSE
+#> 7 This this has been a test       -0.0697 FALSE
 #> 
 #> $test
 #> # A tibble: 3 x 3
-#>   text                            value z    
-#>   <chr>                           <dbl> <lgl>
-#> 1 This one will be a test        -0.768 TRUE 
-#> 2 And the sixth test              0.133 TRUE 
-#> 3 This one will have been a test -0.168 FALSE
+#>   text                          value z    
+#>   <chr>                         <dbl> <lgl>
+#> 1 This test is a test         -0.0691 TRUE 
+#> 2 And this is the fourth test -0.760  TRUE 
+#> 3 And the sixth test           0.614  TRUE
 ```
 
 When predicting categorical variables, it’s often desireable to ensure
@@ -142,23 +142,23 @@ specified proportion in training data:
 split_test_train(data, .p = 0.70, z)
 #> $train
 #> # A tibble: 6 x 3
-#>   text                             value z    
-#>   <chr>                            <dbl> <lgl>
-#> 1 This test is a test             -0.650 TRUE 
-#> 2 Fifth: the test!                -1.36  TRUE 
-#> 3 This is the seventh test        -0.118 TRUE 
-#> 4 This test is going to be a test  0.332 FALSE
-#> 5 This one will have been a test  -0.168 FALSE
-#> 6 This this has been a test        0.932 FALSE
+#>   text                              value z    
+#>   <chr>                             <dbl> <lgl>
+#> 1 And this is the fourth test     -0.760  TRUE 
+#> 2 Fifth: the test!                -1.59   TRUE 
+#> 3 This is the seventh test         0.282  TRUE 
+#> 4 This test is going to be a test -0.446  FALSE
+#> 5 This one will have been a test   0.146  FALSE
+#> 6 This this has been a test       -0.0697 FALSE
 #> 
 #> $test
 #> # A tibble: 4 x 3
-#>   text                         value z    
-#>   <chr>                        <dbl> <lgl>
-#> 1 This one will be a test     -0.768 TRUE 
-#> 2 This this was a test         1.00  TRUE 
-#> 3 And this is the fourth test -2.56  TRUE 
-#> 4 And the sixth test           0.133 TRUE
+#>   text                      value z    
+#>   <chr>                     <dbl> <lgl>
+#> 1 This test is a test     -0.0691 TRUE 
+#> 2 This one will be a test -1.59   TRUE 
+#> 3 This this was a test     1.21   TRUE 
+#> 4 And the sixth test       0.614  TRUE
 ```
 
 The `split_test_train()` doesn’t only work on data frames. It’s also
@@ -174,8 +174,8 @@ possible to split atomic vectors (i.e., character, numeric, logical):
 #> 1 This test is a test           
 #> 2 This one will be a test       
 #> 3 This this was a test          
-#> 4 Fifth: the test!              
-#> 5 And the sixth test            
+#> 4 And this is the fourth test   
+#> 5 Fifth: the test!              
 #> 6 This is the seventh test      
 #> 7 This one will have been a test
 #> 8 This this has been a test     
@@ -184,7 +184,7 @@ possible to split atomic vectors (i.e., character, numeric, logical):
 #> # A tibble: 2 x 1
 #>   x                              
 #>   <chr>                          
-#> 1 And this is the fourth test    
+#> 1 And the sixth test             
 #> 2 This test is going to be a test
 ```
 
@@ -209,28 +209,28 @@ dtm(w)
 #> 8 x 16 sparse Matrix of class "dgCMatrix"
 #>    [[ suppressing 16 column names 'test', 'this', 'a' ... ]]
 #>                                  
-#> 1 2 1 1 . . . 1 . . . . . . . . .
-#> 2 1 1 1 . . 1 . 1 . . . . . 1 . .
+#> 1 2 1 1 1 . . . . . . . . . . . .
+#> 2 1 1 1 . . . 1 1 . . . . . 1 . .
 #> 3 1 2 1 . . . . . . . . . . . 1 .
-#> 4 1 . . 1 . . . . . . . . 1 . . .
-#> 5 1 . . 1 . . . . 1 . . 1 . . . .
-#> 6 1 1 . 1 . . 1 . . . . . . . . 1
-#> 7 1 1 1 . 1 1 . 1 . . 1 . . . . .
-#> 8 1 2 1 . 1 . . . . 1 . . . . . .
+#> 4 1 1 . 1 1 . . . . . 1 1 . . . .
+#> 5 1 . . . 1 . . . . . . . 1 . . .
+#> 6 1 1 . 1 1 . . . . . . . . . . 1
+#> 7 1 1 1 . . 1 1 1 . 1 . . . . . .
+#> 8 1 2 1 . . 1 . . 1 . . . . . . .
 
 ## same thing as dtm
 predict(w)
 #> 8 x 16 sparse Matrix of class "dgCMatrix"
 #>    [[ suppressing 16 column names 'test', 'this', 'a' ... ]]
 #>                                  
-#> 1 2 1 1 . . . 1 . . . . . . . . .
-#> 2 1 1 1 . . 1 . 1 . . . . . 1 . .
+#> 1 2 1 1 1 . . . . . . . . . . . .
+#> 2 1 1 1 . . . 1 1 . . . . . 1 . .
 #> 3 1 2 1 . . . . . . . . . . . 1 .
-#> 4 1 . . 1 . . . . . . . . 1 . . .
-#> 5 1 . . 1 . . . . 1 . . 1 . . . .
-#> 6 1 1 . 1 . . 1 . . . . . . . . 1
-#> 7 1 1 1 . 1 1 . 1 . . 1 . . . . .
-#> 8 1 2 1 . 1 . . . . 1 . . . . . .
+#> 4 1 1 . 1 1 . . . . . 1 1 . . . .
+#> 5 1 . . . 1 . . . . . . . 1 . . .
+#> 6 1 1 . 1 1 . . . . . . . . . . 1
+#> 7 1 1 1 . . 1 1 1 . 1 . . . . . .
+#> 8 1 2 1 . . 1 . . 1 . . . . . . .
 ```
 
 ### `tfidf()`
@@ -241,24 +241,24 @@ or term frequency–inverse document frequency matrix
 ## apply to other data
 tfidf(w)
 #> 8 x 16 Matrix of class "dgeMatrix"
-#>         test        this          a        the       been        one         is       will      sixth
-#> 1 -1.8512527  0.13936089  0.9772545 -0.7001458 -0.5379438 -0.5379438  1.6201852 -0.5379438 -0.3535534
-#> 2  0.7266907 -0.09713032  0.6172134 -0.7001458 -0.5379438  1.7793527 -0.5400617  1.7793527 -0.3535534
-#> 3  0.3584130  1.55830815  0.9772545 -0.7001458 -0.5379438 -0.5379438 -0.5400617 -0.5379438 -0.3535534
-#> 4 -1.1146974 -1.27958637 -1.1829923  1.6833293 -0.5379438 -0.5379438 -0.5400617 -0.5379438 -0.3535534
-#> 5 -0.1940034 -1.27958637 -1.1829923  1.0874605 -0.5379438 -0.5379438 -0.5400617 -0.5379438  2.4748737
-#> 6  0.3584130  0.13936089 -1.1829923  0.7299393 -0.5379438 -0.5379438  1.6201852 -0.5379438 -0.3535534
-#> 7  0.9897461 -0.26605261  0.3600411 -0.7001458  1.4483103  1.4483103 -0.5400617  1.4483103 -0.3535534
-#> 8  0.7266907  1.08532573  0.6172134 -0.7001458  1.7793527 -0.5379438 -0.5400617 -0.5379438 -0.3535534
-#>          has       have        and      fifth         be        was    seventh
+#>         test this          a         is        the       been        one       will        has
+#> 1 -1.9144652  NaN  0.9772545  1.3140178 -0.6749656 -0.5379438 -0.5379438 -0.5379438 -0.3535534
+#> 2  0.5954691  NaN  0.6172134 -0.7205904 -0.6749656 -0.5379438  1.7793527  1.7793527 -0.3535534
+#> 3  0.2369071  NaN  0.9772545 -0.7205904 -0.6749656 -0.5379438 -0.5379438 -0.5379438 -0.3535534
+#> 4  0.5954691  NaN -1.1829923  0.9749164  0.6106831 -0.5379438 -0.5379438 -0.5379438 -0.3535534
+#> 5 -1.1973411  NaN -1.1829923 -0.7205904  1.8963318 -0.5379438 -0.5379438 -0.5379438 -0.3535534
+#> 6  0.2369071  NaN -1.1829923  1.3140178  0.8678129 -0.5379438 -0.5379438 -0.5379438 -0.3535534
+#> 7  0.8515849  NaN  0.3600411 -0.7205904 -0.6749656  1.4483103  1.4483103  1.4483103 -0.3535534
+#> 8  0.5954691  NaN  0.6172134 -0.7205904 -0.6749656  1.7793527 -0.5379438 -0.5379438  2.4748737
+#>         have     fourth        and      fifth         be        was    seventh
 #> 1 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
 #> 2 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534 -0.3535534
 #> 3 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534
-#> 4 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534 -0.3535534 -0.3535534
-#> 5 -0.3535534 -0.3535534  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534
+#> 4 -0.3535534  2.4748737  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534
+#> 5 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534 -0.3535534 -0.3535534
 #> 6 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737
-#> 7 -0.3535534  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
-#> 8  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
+#> 7  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
+#> 8 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
 ```
 
 Or apply the wactor on **new data**
@@ -269,24 +269,24 @@ dtm(w, d$test$x)
 #> 2 x 16 sparse Matrix of class "dgCMatrix"
 #>    [[ suppressing 16 column names 'test', 'this', 'a' ... ]]
 #>                                  
-#> 1 1 1 . 1 . . 1 . . . . 1 . . . .
-#> 2 2 1 1 . . . 1 . . . . . . 1 . .
+#> 1 1 . . . 1 . . . . . . 1 . . . .
+#> 2 2 1 1 1 . . . . . . . . . 1 . .
 
 ## same thing as dtm
 predict(w, d$test$x)
 #> 2 x 16 sparse Matrix of class "dgCMatrix"
 #>    [[ suppressing 16 column names 'test', 'this', 'a' ... ]]
 #>                                  
-#> 1 1 1 . 1 . . 1 . . . . 1 . . . .
-#> 2 2 1 1 . . . 1 . . . . . . 1 . .
+#> 1 1 . . . 1 . . . . . . 1 . . . .
+#> 2 2 1 1 1 . . . . . . . . . 1 . .
 
 ## term frequency–inverse document frequency of new data
 tfidf(w, d$test$x)
 #> 2 x 16 Matrix of class "dgeMatrix"
-#>        test        this          a        the       been        one       is       will      sixth
-#> 1  0.358413  0.13936089 -1.1829923  0.7299393 -0.5379438 -0.5379438 1.620185 -0.5379438 -0.3535534
-#> 2 -1.114697 -0.09713032  0.6172134 -0.7001458 -0.5379438 -0.5379438 1.260144 -0.5379438 -0.3535534
-#>          has       have        and      fifth         be        was    seventh
-#> 1 -0.3535534 -0.3535534  1.9091883 -0.3535534 -0.3535534 -0.3535534 -0.3535534
+#>        test this          a         is        the       been        one       will        has
+#> 1 -1.197341  NaN -1.1829923 -0.7205904  1.8963318 -0.5379438 -0.5379438 -0.5379438 -0.3535534
+#> 2 -1.197341  NaN  0.6172134  0.9749164 -0.6749656 -0.5379438 -0.5379438 -0.5379438 -0.3535534
+#>         have     fourth        and      fifth         be        was    seventh
+#> 1 -0.3535534 -0.3535534  5.3033009 -0.3535534 -0.3535534 -0.3535534 -0.3535534
 #> 2 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534 -0.3535534
 ```

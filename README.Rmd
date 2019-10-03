@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 options(width = 104)
 ```
-# wactor
+# wactor <img src='man/figures/logo.png' align="right" height="200" />
 
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.org/mkearney/wactor.svg?branch=master)](https://travis-ci.org/mkearney/wactor)
