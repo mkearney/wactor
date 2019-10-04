@@ -141,7 +141,7 @@ predict(w)
 or term frequency–inverse document frequency matrix
 
 ```{r}
-## apply to other data
+## create tf-idf matrix
 tfidf(w)
 ```
 

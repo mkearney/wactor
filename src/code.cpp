@@ -1,9 +1,10 @@
-// [[Rcpp::plugins(cpp11)]]
+#include <vector>
+#include <numeric>
+
 #include <Rcpp.h>
 using namespace Rcpp;
 
-#include <vector>
-#include <numeric>
+// [[Rcpp::plugins(cpp17)]]
 
 // [[Rcpp::export]]
 long double cppvar(NumericVector x, const bool narm = true) {

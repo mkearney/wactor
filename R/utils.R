@@ -35,13 +35,18 @@ caller_env <- function(n = 1) {
 scale_with_params <- function(x, m, std) {
   ncol <- length(m)
   nrow <- nrow(x)
-  (x - matrix(m,
+  divide <- function(e1, e2) {
+    e <- `/`(e1, e2)
+    e[e2 == 0 & e1 == 0] <- 0
+    e
+  }
+  divide((x - matrix(m,
     nrow = nrow,
     ncol = ncol,
-    byrow = TRUE)) / matrix(std,
+    byrow = TRUE)), matrix(std,
       nrow = nrow,
       ncol = ncol,
-      byrow = TRUE)
+      byrow = TRUE))
 }
 
 sampleit <- function(x, n) {
