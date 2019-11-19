@@ -20,7 +20,8 @@ Imports:
     utils,
     tibble,
     ggplot2,
-    stats
+    stats,
+    Matrix
 URL: https://github.com/mkearney/wactor
 BugReports: https://github.com/mkearney/wactor/issues
 RoxygenNote: 6.1.1
