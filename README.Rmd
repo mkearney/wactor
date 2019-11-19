@@ -94,7 +94,7 @@ data used in the returned training data can be adjusted via the `.p` argument:
 split_test_train(data, .p = 0.70)
 ```
 
-When predicting categorical variables, it's often desireable to ensure the 
+When predicting categorical variables, it's often desirable to ensure the 
 training data set has an even number of observations for each level in the 
 response variable. This can be achieved by indicating the [column] name of the 
 categorical response variable using tidy evaluation. This will prioritize evenly
