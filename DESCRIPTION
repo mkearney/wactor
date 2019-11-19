@@ -1,13 +1,14 @@
 Package: wactor
 Title: Word Factor Vectors
 Version: 0.0.1
-Authors@R: 
-    person(given = "Michael W.",
-           family = "Kearney",
-           role = c("aut", "cre"),
-           email = "kearneymw@missouri.edu",
-           comment = c(ORCID = "0000-0002-0730-4694"))
-Description: A user-friendly factor-like interface for converting strings of 
+Authors@R: c(
+    person("Michael W.", "Kearney", ,
+      email = "kearneymw@missouri.edu", role = c("aut", "cre"),
+      comment = c(ORCID = "0000-0002-0730-4694")),
+    person("Lingshu", "Hu", ,
+      role = c("ctb"),
+      comment = c(ORCID = "0000-0003-0304-882X")))
+Description: A user-friendly factor-like interface for converting strings of
     text into numeric vectors and rectangular data structures.
 Encoding: UTF-8
 LazyData: true
