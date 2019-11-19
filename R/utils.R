@@ -1,15 +1,14 @@
-std_dev <- function(x, na.rm = TRUE) {
-  cppsd(x, na.rm)
+std_dev <- function(x, na.rm = TRUE, ...) {
+  stats::sd(x, na.rm = na.rm, ...)
 }
 
-variance <- function(x, na.rm = TRUE) {
-  cppvar(x, na.rm)
+variance <- function(x, na.rm = TRUE, ...) {
+  stats::var(x, na.rm = na.rm, ...)
 }
 
-the_mean <- function(x, na.rm = TRUE) {
-  cppmean(x, na.rm)
+the_mean <- function(x, na.rm = TRUE, ...) {
+  mean(x, na.rm = na.rm, ...)
 }
-
 
 prepend_class <- function(x, ...) {
   `class<-`(x, unique(c(..., class(x))))
@@ -33,6 +32,9 @@ caller_env <- function(n = 1) {
 
 
 scale_with_params <- function(x, m, std) {
+  if (!is.matrix(x)) {
+    x <- as.matrix(x)
+  }
   ncol <- length(m)
   nrow <- nrow(x)
   divide <- function(e1, e2) {

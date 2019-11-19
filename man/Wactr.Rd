@@ -4,7 +4,7 @@
 \name{Wactr}
 \alias{Wactr}
 \title{A wactor object}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{An object of class \code{R6ClassGenerator} of length 25.}
 \usage{
 Wactr
 }

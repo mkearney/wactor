@@ -19,13 +19,11 @@ Imports:
     utils,
     tibble,
     ggplot2,
-    Rcpp
+    stats
 URL: https://github.com/mkearney/wactor
 BugReports: https://github.com/mkearney/wactor/issues
 RoxygenNote: 6.1.1
 License: MIT + file LICENSE
-LinkingTo: 
-    Rcpp
 Suggests: 
     testthat (>= 2.1.0),
     covr

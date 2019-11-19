@@ -10,6 +10,10 @@ test_that("wactor works", {
     ncol(tfidf(w)),
     10
   )
+  expect_gt(
+    ncol(tfidf(letters)),
+    10
+  )
   expect_equal(
     nrow(tfidf(w)),
     nrow(d)

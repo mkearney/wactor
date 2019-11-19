@@ -51,6 +51,12 @@ tfidf.wactor <- function(object, .x = NULL) {
   object$tfidf(.x %||% object$.text)
 }
 
+#' @export
+tfidf.character <- function(object, .x = NULL) {
+  object <- wactor(object)
+  object$tfidf(.x %||% object$.text)
+}
+
 #' Document term frequency
 #'
 #' Converts character vector into document term matrix (dtm)
