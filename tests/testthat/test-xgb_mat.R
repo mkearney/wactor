@@ -5,6 +5,7 @@ test_that("xgb_mat works", {
   )
   z <- c(rep(1, 80), rep(0, 20))
 
+
   m1 <- xgb_mat(d)
   expect_true(inherits(m1, "xgb.DMatrix"))
 
@@ -16,4 +17,12 @@ test_that("xgb_mat works", {
   m3 <- xgb_mat(d, y = z)
   expect_true(all(c("x", "y") %in% colnames(m3)))
   expect_true(is.numeric(xgboost::getinfo(m3, "label")))
+
+  m4 <- xgb_mat(Matrix::sparse.model.matrix(~ ., data = d), y = z)
+  expect_true(all(c("x", "y") %in% colnames(m4)))
+  expect_true(is.numeric(xgboost::getinfo(m4, "label")))
+
+  m5 <- xgb_mat(Matrix::sparse.model.matrix(~ ., data = d))
+  expect_true(all(c("x", "y") %in% colnames(m5)))
+  expect_null(xgboost::getinfo(m5, "label"))
 })
