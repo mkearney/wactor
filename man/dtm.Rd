@@ -17,3 +17,22 @@ A c-style matrix
 \description{
 Converts character vector into document term matrix (dtm)
 }
+\examples{
+
+## create wactor
+w <- wactor(letters)
+
+## use wactor to create dtm of same vector
+dtm(w, letters)
+
+## using the initial data is the default; so you don't actually have to
+## respecify it
+dtm(w)
+
+## use wactor to create dtm on new vector
+dtm(w, c("a", "e", "i", "o", "u"))
+
+## apply directly to character vector
+dtm(letters)
+
+}

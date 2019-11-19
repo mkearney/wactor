@@ -18,8 +18,7 @@ coverage](https://codecov.io/gh/mkearney/wactor/branch/master/graph/badge.svg)](
 <!-- badges: end -->
 
 A user-friendly factor-like interface for converting strings of text
-into numeric vectors and rectangular data
-structures.
+into numeric vectors and rectangular data structures.
 
 ## Installation
 
@@ -84,21 +83,21 @@ split_test_train(data)
 #> # A tibble: 8 x 3
 #>   text                              value z    
 #>   <chr>                             <dbl> <lgl>
-#> 1 This one will be a test         -1.00   TRUE 
-#> 2 This this was a test             0.439  TRUE 
-#> 3 And this is the fourth test     -0.0876 TRUE 
-#> 4 Fifth: the test!                 2.49   TRUE 
-#> 5 This is the seventh test        -0.136  TRUE 
-#> 6 This test is going to be a test  0.304  FALSE
-#> 7 This one will have been a test   0.457  FALSE
-#> 8 This this has been a test       -1.51   FALSE
+#> 1 This one will be a test         -0.584  TRUE 
+#> 2 This this was a test            -0.0736 TRUE 
+#> 3 And this is the fourth test      0.244  TRUE 
+#> 4 Fifth: the test!                 0.956  TRUE 
+#> 5 And the sixth test              -0.620  TRUE 
+#> 6 This is the seventh test         1.67   TRUE 
+#> 7 This test is going to be a test -0.197  FALSE
+#> 8 This one will have been a test   1.95   FALSE
 #> 
 #> $test
 #> # A tibble: 2 x 3
-#>   text                value z    
-#>   <chr>               <dbl> <lgl>
-#> 1 This test is a test 0.208 TRUE 
-#> 2 And the sixth test  0.296 TRUE
+#>   text                       value z    
+#>   <chr>                      <dbl> <lgl>
+#> 1 This test is a test        1.02  TRUE 
+#> 2 This this has been a test -0.790 FALSE
 ```
 
 By default, `split_test_train()` returns 80% of the input data in the
@@ -113,21 +112,21 @@ split_test_train(data, .p = 0.70)
 #> # A tibble: 7 x 3
 #>   text                             value z    
 #>   <chr>                            <dbl> <lgl>
-#> 1 This test is a test             0.208  TRUE 
-#> 2 This this was a test            0.439  TRUE 
-#> 3 And this is the fourth test    -0.0876 TRUE 
-#> 4 And the sixth test              0.296  TRUE 
-#> 5 This is the seventh test       -0.136  TRUE 
-#> 6 This one will have been a test  0.457  FALSE
-#> 7 This this has been a test      -1.51   FALSE
+#> 1 This test is a test              1.02  TRUE 
+#> 2 Fifth: the test!                 0.956 TRUE 
+#> 3 And the sixth test              -0.620 TRUE 
+#> 4 This is the seventh test         1.67  TRUE 
+#> 5 This test is going to be a test -0.197 FALSE
+#> 6 This one will have been a test   1.95  FALSE
+#> 7 This this has been a test       -0.790 FALSE
 #> 
 #> $test
 #> # A tibble: 3 x 3
-#>   text                             value z    
-#>   <chr>                            <dbl> <lgl>
-#> 1 This one will be a test         -1.00  TRUE 
-#> 2 Fifth: the test!                 2.49  TRUE 
-#> 3 This test is going to be a test  0.304 FALSE
+#>   text                          value z    
+#>   <chr>                         <dbl> <lgl>
+#> 1 This one will be a test     -0.584  TRUE 
+#> 2 This this was a test        -0.0736 TRUE 
+#> 3 And this is the fourth test  0.244  TRUE
 ```
 
 When predicting categorical variables, it’s often desireable to ensure
@@ -142,23 +141,23 @@ specified proportion in training data:
 split_test_train(data, .p = 0.70, z)
 #> $train
 #> # A tibble: 6 x 3
-#>   text                             value z    
-#>   <chr>                            <dbl> <lgl>
-#> 1 This test is a test              0.208 TRUE 
-#> 2 This this was a test             0.439 TRUE 
-#> 3 Fifth: the test!                 2.49  TRUE 
-#> 4 This test is going to be a test  0.304 FALSE
-#> 5 This one will have been a test   0.457 FALSE
-#> 6 This this has been a test       -1.51  FALSE
+#>   text                              value z    
+#>   <chr>                             <dbl> <lgl>
+#> 1 This this was a test            -0.0736 TRUE 
+#> 2 And this is the fourth test      0.244  TRUE 
+#> 3 Fifth: the test!                 0.956  TRUE 
+#> 4 This test is going to be a test -0.197  FALSE
+#> 5 This one will have been a test   1.95   FALSE
+#> 6 This this has been a test       -0.790  FALSE
 #> 
 #> $test
 #> # A tibble: 4 x 3
-#>   text                          value z    
-#>   <chr>                         <dbl> <lgl>
-#> 1 This one will be a test     -1.00   TRUE 
-#> 2 And this is the fourth test -0.0876 TRUE 
-#> 3 And the sixth test           0.296  TRUE 
-#> 4 This is the seventh test    -0.136  TRUE
+#>   text                      value z    
+#>   <chr>                     <dbl> <lgl>
+#> 1 This test is a test       1.02  TRUE 
+#> 2 This one will be a test  -0.584 TRUE 
+#> 3 And the sixth test       -0.620 TRUE 
+#> 4 This is the seventh test  1.67  TRUE
 ```
 
 The `split_test_train()` doesn’t only work on data frames. It’s also
@@ -171,21 +170,21 @@ possible to split atomic vectors (i.e., character, numeric, logical):
 #> # A tibble: 8 x 1
 #>   x                              
 #>   <chr>                          
-#> 1 This test is a test            
-#> 2 This one will be a test        
-#> 3 This this was a test           
-#> 4 And this is the fourth test    
-#> 5 And the sixth test             
-#> 6 This is the seventh test       
-#> 7 This test is going to be a test
+#> 1 This one will be a test        
+#> 2 This this was a test           
+#> 3 And this is the fourth test    
+#> 4 Fifth: the test!               
+#> 5 This is the seventh test       
+#> 6 This test is going to be a test
+#> 7 This one will have been a test 
 #> 8 This this has been a test      
 #> 
 #> $test
 #> # A tibble: 2 x 1
-#>   x                             
-#>   <chr>                         
-#> 1 Fifth: the test!              
-#> 2 This one will have been a test
+#>   x                  
+#>   <chr>              
+#> 1 This test is a test
+#> 2 And the sixth test
 ```
 
 ### `wactor()`
@@ -206,31 +205,31 @@ Get the document term frequency matrix
 ``` r
 ## term frequency–inverse document frequency
 dtm(w)
-#> 8 x 17 sparse Matrix of class "dgCMatrix"
-#>    [[ suppressing 17 column names 'test', 'this', 'a' ... ]]
-#>                                    
-#> 1 2 1 1 1 . . . . . . . . . . . . .
-#> 2 1 1 1 . . . 1 . . . . . . . 1 . 1
-#> 3 1 2 1 . . . . . 1 . . . . . . . .
-#> 4 1 1 . 1 1 1 . . . . . . . 1 . . .
-#> 5 1 . . . 1 1 . . . . . . 1 . . . .
-#> 6 1 1 . 1 1 . . . . . . . . . . 1 .
-#> 7 2 1 1 1 . . 1 . . . 1 1 . . . . .
-#> 8 1 2 1 . . . . 1 . 1 . . . . . . .
+#> 8 x 18 sparse Matrix of class "dgCMatrix"
+#>    [[ suppressing 18 column names 'test', 'this', 'a' ... ]]
+#>                                      
+#> 1 1 1 1 . . . 1 1 1 . . . . . . . . .
+#> 2 1 2 1 . . . . . . . . . 1 . . . . .
+#> 3 1 1 . 1 1 . . . . . 1 . . . . . 1 .
+#> 4 1 . . . 1 . . . . . . 1 . . . . . .
+#> 5 1 1 . 1 1 . . . . . . . . . . . . 1
+#> 6 2 1 1 1 . . . 1 . . . . . . 1 1 . .
+#> 7 1 1 1 . . 1 1 . 1 1 . . . . . . . .
+#> 8 1 2 1 . . 1 . . . . . . . 1 . . . .
 
 ## same thing as dtm
 predict(w)
-#> 8 x 17 sparse Matrix of class "dgCMatrix"
-#>    [[ suppressing 17 column names 'test', 'this', 'a' ... ]]
-#>                                    
-#> 1 2 1 1 1 . . . . . . . . . . . . .
-#> 2 1 1 1 . . . 1 . . . . . . . 1 . 1
-#> 3 1 2 1 . . . . . 1 . . . . . . . .
-#> 4 1 1 . 1 1 1 . . . . . . . 1 . . .
-#> 5 1 . . . 1 1 . . . . . . 1 . . . .
-#> 6 1 1 . 1 1 . . . . . . . . . . 1 .
-#> 7 2 1 1 1 . . 1 . . . 1 1 . . . . .
-#> 8 1 2 1 . . . . 1 . 1 . . . . . . .
+#> 8 x 18 sparse Matrix of class "dgCMatrix"
+#>    [[ suppressing 18 column names 'test', 'this', 'a' ... ]]
+#>                                      
+#> 1 1 1 1 . . . 1 1 1 . . . . . . . . .
+#> 2 1 2 1 . . . . . . . . . 1 . . . . .
+#> 3 1 1 . 1 1 . . . . . 1 . . . . . 1 .
+#> 4 1 . . . 1 . . . . . . 1 . . . . . .
+#> 5 1 1 . 1 1 . . . . . . . . . . . . 1
+#> 6 2 1 1 1 . . . 1 . . . . . . 1 1 . .
+#> 7 1 1 1 . . 1 1 . 1 1 . . . . . . . .
+#> 8 1 2 1 . . 1 . . . . . . . 1 . . . .
 ```
 
 ### `tfidf()`
@@ -240,25 +239,24 @@ or term frequency–inverse document frequency matrix
 ``` r
 ## create tf-idf matrix
 tfidf(w)
-#> 8 x 17 Matrix of class "dgeMatrix"
-#>         test this          a         is        the        and         be       been        was
-#> 1 -2.2242112    0  1.0090581  1.1911527 -0.7089959 -0.5262117 -0.5328606 -0.3535534 -0.3535534
-#> 2  0.7414037    0  0.6462507 -0.9070245 -0.7089959 -0.5262117  1.9030735 -0.3535534 -0.3535534
-#> 3  0.3177445    0  1.0090581 -0.9070245 -0.7089959 -0.5262117 -0.5328606 -0.3535534  2.4748737
-#> 4  0.7414037    0 -1.1677863  0.8414565  0.8239682  1.1576657 -0.5328606 -0.3535534 -0.3535534
-#> 5 -0.3177445    0 -1.1677863 -0.9070245  1.5904503  1.9996044 -0.5328606 -0.3535534 -0.3535534
-#> 6  0.3177445    0 -1.1677863  1.1911527  1.1305610 -0.5262117 -0.5328606 -0.3535534 -0.3535534
-#> 7 -0.3177445    0  0.1927414  0.4043362 -0.7089959 -0.5262117  1.2940900 -0.3535534 -0.3535534
-#> 8  0.7414037    0  0.6462507 -0.9070245 -0.7089959 -0.5262117 -0.5328606  2.4748737 -0.3535534
-#>          has         to      going      sixth     fourth        one    seventh       will
-#> 1 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
-#> 2 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534  2.4748737
-#> 3 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
-#> 4 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534 -0.3535534 -0.3535534
-#> 5 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534
-#> 6 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534
-#> 7 -0.3535534  2.4748737  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
-#> 8  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
+#>          test this          a         is        the       been        one         be       will
+#> 1  0.59172924    0  0.7766318 -0.7050698 -0.6749656 -0.5379438  1.7793527  1.9030735  1.7793527
+#> 2  0.05291888    0  1.1658164 -0.7050698 -0.6749656 -0.5379438 -0.5379438 -0.5328606 -0.5379438
+#> 3  0.59172924    0 -1.1692912  1.2069839  0.6106831 -0.5379438 -0.5379438 -0.5328606 -0.5379438
+#> 4 -2.10232258    0 -1.1692912 -0.7050698  1.8963318 -0.5379438 -0.5379438 -0.5328606 -0.5379438
+#> 5  0.05291888    0 -1.1692912  1.5893946  0.8678129 -0.5379438 -0.5379438 -0.5328606 -0.5379438
+#> 6 -0.75529667    0  0.2901510  0.7289704 -0.6749656 -0.5379438 -0.5379438  1.2940900 -0.5379438
+#> 7  0.97659378    0  0.4986428 -0.7050698 -0.6749656  1.4483103  1.4483103 -0.5328606  1.4483103
+#> 8  0.59172924    0  0.7766318 -0.7050698 -0.6749656  1.7793527 -0.5379438 -0.5328606 -0.5379438
+#>         have        and      fifth        was        has         to      going     fourth    seventh
+#> 1 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
+#> 2 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
+#> 3 -0.3535534  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534
+#> 4 -0.3535534 -0.3535534  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
+#> 5 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737
+#> 6 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737  2.4748737 -0.3535534 -0.3535534
+#> 7  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
+#> 8 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534 -0.3535534 -0.3535534 -0.3535534
 ```
 
 Or apply the wactor on **new data**
@@ -266,29 +264,28 @@ Or apply the wactor on **new data**
 ``` r
 ## document term frequecy of new data
 dtm(w, d$test$x)
-#> 2 x 17 sparse Matrix of class "dgCMatrix"
-#>    [[ suppressing 17 column names 'test', 'this', 'a' ... ]]
-#>                                    
-#> 1 1 . . . 1 . . . . . . . . . . . .
-#> 2 1 1 1 . . . . 1 . . . . . . 1 . 1
+#> 2 x 18 sparse Matrix of class "dgCMatrix"
+#>    [[ suppressing 18 column names 'test', 'this', 'a' ... ]]
+#>                                      
+#> 1 2 1 1 1 . . . . . . . . . . . . . .
+#> 2 1 . . . 1 . . . . . 1 . . . . . . .
 
 ## same thing as dtm
 predict(w, d$test$x)
-#> 2 x 17 sparse Matrix of class "dgCMatrix"
-#>    [[ suppressing 17 column names 'test', 'this', 'a' ... ]]
-#>                                    
-#> 1 1 . . . 1 . . . . . . . . . . . .
-#> 2 1 1 1 . . . . 1 . . . . . . 1 . 1
+#> 2 x 18 sparse Matrix of class "dgCMatrix"
+#>    [[ suppressing 18 column names 'test', 'this', 'a' ... ]]
+#>                                      
+#> 1 2 1 1 1 . . . . . . . . . . . . . .
+#> 2 1 . . . 1 . . . . . 1 . . . . . . .
 
 ## term frequency–inverse document frequency of new data
 tfidf(w, d$test$x)
-#> 2 x 17 Matrix of class "dgeMatrix"
-#>         test this          a         is        the        and         be       been        was
-#> 1 -3.4951890    0 -1.1677863 -0.9070245  3.8898965 -0.5262117 -0.5328606 -0.3535534 -0.3535534
-#> 2  0.7414037    0  0.6462507 -0.9070245 -0.7089959 -0.5262117 -0.5328606  2.4748737 -0.3535534
-#>          has         to      going      sixth     fourth        one    seventh       will
+#>        test this         a         is        the       been        one         be       will       have
+#> 1 -3.179943    0  1.165816  1.5893946 -0.6749656 -0.5379438 -0.5379438 -0.5328606 -0.5379438 -0.3535534
+#> 2 -2.102323    0 -1.169291 -0.7050698  1.8963318 -0.5379438 -0.5379438 -0.5328606 -0.5379438 -0.3535534
+#>          and      fifth        was        has         to      going     fourth    seventh
 #> 1 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
-#> 2 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534  2.4748737 -0.3535534  2.4748737
+#> 2  5.3033009 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534 -0.3535534
 ```
 
 ### `xgb_mat`
@@ -299,7 +296,7 @@ The wactor package also makes it easy to work with the
 ``` r
 ## convert tfidf matrix into xgb.DMatrix
 xgb_mat(tfidf(w, d$test$x))
-#> xgb.DMatrix  dim: 2 x 17  info: NA  colnames: yes
+#> xgb.DMatrix  dim: 2 x 18  info: NA  colnames: yes
 ```
 
 The `xgb_mat()` function also allows users to specify a
@@ -308,7 +305,7 @@ response/label/outcome vector, e.g.:
 ``` r
 ## include a response variable
 xgb_mat(tfidf(w, d$train$x), y = c(rep(0, 4), rep(1, 4)))
-#> xgb.DMatrix  dim: 8 x 17  info: label  colnames: yes
+#> xgb.DMatrix  dim: 8 x 18  info: label  colnames: yes
 ```
 
 To return split (into test and train) data, specify a value between 0-1
@@ -353,9 +350,9 @@ xgboost::xgb.train(
 #> callbacks:
 #>   cb.print.evaluation(period = print_every_n)
 #>   cb.evaluation.log()
-#> # of features: 17 
+#> # of features: 18 
 #> niter: 4
-#> nfeatures : 17 
+#> nfeatures : 18 
 #> evaluation_log:
 #>  iter train_error test_error
 #>     1    0.333333          1

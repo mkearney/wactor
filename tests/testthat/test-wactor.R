@@ -22,6 +22,22 @@ test_that("wactor works", {
     ncol(dtm(w)),
     10
   )
+  expect_gt(
+    ncol(dtm(letters)),
+    10
+  )
+  expect_equal(
+    predict(w),
+    dtm(w)
+  )
+  expect_equal(
+    predict(w, c("a", "b", "c", "c")),
+    dtm(w, c("a", "b", "c", "c"))
+  )
+  expect_equal(
+    predict(w, newdata = c("a", "b", "c", "c")),
+    predict(w, c("a", "b", "c", "c")),
+  )
   expect_equal(
     nrow(dtm(w)),
     nrow(d)

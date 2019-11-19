@@ -2,6 +2,7 @@
 
 S3method(as.data.frame,wactor)
 S3method(as_wactor,default)
+S3method(dtm,character)
 S3method(dtm,wactor)
 S3method(levels,wactor)
 S3method(plot,wactor)

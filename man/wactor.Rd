@@ -17,3 +17,27 @@ An object of type wactor
 \description{
 Create an object of type 'wactor'
 }
+\examples{
+
+## create
+w <- wactor(c("a", "a", "a", "b", "b", "c"))
+
+## summarize
+summary(w)
+
+## plot
+plot(w)
+
+## predict
+predict(w)
+
+## use on NEW data
+dtm(w, letters[1:5])
+
+## dtm() is the same as predict()
+predict(w, letters[1:5])
+
+## works if you specify 'newdata' too
+predict(w, newdata = letters[1:5])
+
+}

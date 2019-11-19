@@ -18,3 +18,22 @@ A c-style matrix
 Converts character vector into a term frequency inverse document frequency
 (TFIDF) matrix
 }
+\examples{
+
+## create wactor
+w <- wactor(letters)
+
+## use wactor to create tfidf of same vector
+tfidf(w, letters)
+
+## using the initial data is the default; so you don't actually have to
+## respecify it
+tfidf(w)
+
+## use wactor to create tfidf on new vector
+tfidf(w, c("a", "e", "i", "o", "u"))
+
+## apply directly to character vector
+tfidf(letters)
+
+}

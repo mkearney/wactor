@@ -24,6 +24,29 @@ as_wactor.default <- function(.x, ...) {
 #' @param .x Input text vector
 #' @param ... Other args passed to Wactr$new(...)
 #' @return An object of type wactor
+#' @examples
+#'
+#' ## create
+#' w <- wactor(c("a", "a", "a", "b", "b", "c"))
+#'
+#' ## summarize
+#' summary(w)
+#'
+#' ## plot
+#' plot(w)
+#'
+#' ## predict
+#' predict(w)
+#'
+#' ## use on NEW data
+#' dtm(w, letters[1:5])
+#'
+#' ## dtm() is the same as predict()
+#' predict(w, letters[1:5])
+#'
+#' ## works if you specify 'newdata' too
+#' predict(w, newdata = letters[1:5])
+#'
 #' @export
 wactor <- function(.x, ...) {
   UseMethod("wactor")
@@ -43,6 +66,24 @@ wactor.default <- function(.x, ...) {
 #' @param object Input object containing dictionary (column), e.g., wactor
 #' @param .x Text from which the tfidf matrix will be created
 #' @return A c-style matrix
+#' @examples
+#'
+#' ## create wactor
+#' w <- wactor(letters)
+#'
+#' ## use wactor to create tfidf of same vector
+#' tfidf(w, letters)
+#'
+#' ## using the initial data is the default; so you don't actually have to
+#' ## respecify it
+#' tfidf(w)
+#'
+#' ## use wactor to create tfidf on new vector
+#' tfidf(w, c("a", "e", "i", "o", "u"))
+#'
+#' ## apply directly to character vector
+#' tfidf(letters)
+#'
 #' @export
 tfidf <- function(object, .x = NULL) UseMethod("tfidf")
 
@@ -64,6 +105,24 @@ tfidf.character <- function(object, .x = NULL) {
 #' @param object Input object containing dictionary (column), e.g., wactor
 #' @param .x Text from which the document term matrix will be created
 #' @return A c-style matrix
+#' @examples
+#'
+#' ## create wactor
+#' w <- wactor(letters)
+#'
+#' ## use wactor to create dtm of same vector
+#' dtm(w, letters)
+#'
+#' ## using the initial data is the default; so you don't actually have to
+#' ## respecify it
+#' dtm(w)
+#'
+#' ## use wactor to create dtm on new vector
+#' dtm(w, c("a", "e", "i", "o", "u"))
+#'
+#' ## apply directly to character vector
+#' dtm(letters)
+#'
 #' @export
 dtm <- function(object, .x = NULL) UseMethod("dtm")
 
@@ -73,8 +132,16 @@ dtm.wactor <- function(object, .x = NULL) {
 }
 
 #' @export
+dtm.character <- function(object, .x = NULL) {
+  object <- wactor(object)
+  object$dtm(.x %||% object$.text)
+}
+
+#' @export
 predict.wactor <- function(object, ...) {
-  dtm(object, ...)
+  dots <- list(object = object, ...)
+  names(dots)[names(dots) == "newdata"] <- ".x"
+  do.call("dtm", dots)
 }
 
 #' @export
