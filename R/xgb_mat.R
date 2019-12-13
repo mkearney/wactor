@@ -7,6 +7,11 @@
 #' @param y Label vector
 #' @param split Optional number between 0-1 indicating the desired split between
 #'  train and test
+#' @return A xgb.Dmatrix
+#' @examples
+#'
+#' xgb_mat(data.frame(x = rnorm(20), y = rnorm(20)))
+#'
 #' @export
 xgb_mat <- function(x, ..., y = NULL, split = NULL) {
   UseMethod("xgb_mat")

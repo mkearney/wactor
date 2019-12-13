@@ -24,7 +24,7 @@ Imports:
     Matrix
 URL: https://github.com/mkearney/wactor
 BugReports: https://github.com/mkearney/wactor/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 License: MIT + file LICENSE
 Suggests: 
     testthat (>= 2.1.0),

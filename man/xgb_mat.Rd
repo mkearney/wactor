@@ -16,6 +16,14 @@ xgb_mat(x, ..., y = NULL, split = NULL)
 \item{split}{Optional number between 0-1 indicating the desired split between
 train and test}
 }
+\value{
+A xgb.Dmatrix
+}
 \description{
 Simple wrapper for creating a xgboost matrix
+}
+\examples{
+
+xgb_mat(data.frame(x = rnorm(20), y = rnorm(20)))
+
 }

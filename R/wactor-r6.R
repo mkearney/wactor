@@ -47,6 +47,16 @@ validate_tokenizer <- function(tokenizer = NULL) {
 #' A wactor object
 #'
 #' A factor-like class for word vectors
+#' @param max_words Maximum number of words in vocabulary
+#' @param doc_prop_max Maximum proportion of docs for terms in dinctionary
+#' @param doc_prop_min Minimum proportion of docs for terms in dictionary.
+#' @param .text Input text
+#' @param .vectorizer Object used to vectorize text into numeric
+#' @param .vocab Predefined vocabulary
+#' @param .tokenizer Function used to tokenize text
+#' @param .tfidf Term frequency inverse document frequency object
+#' @param .tfidf_m Mean used to scale matrix
+#' @param .tfidf_sd Standard deviation used to scale matrix
 #'
 #' @export
 Wactr <- R6::R6Class("wactor", list(
@@ -63,8 +73,7 @@ Wactr <- R6::R6Class("wactor", list(
                          tokenizer = NULL,
                          max_words = 1000,
                          doc_prop_max = 1.000,
-                         doc_prop_min = 0.000,
-                         ...) {
+                         doc_prop_min = 0.000) {
     # if (!is.null(train_rows <- get_train_rows(text))) {
     #   text <- text[train_rows]
     # }
