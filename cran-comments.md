@@ -8,3 +8,8 @@
 0 errors | 0 warnings | 1 note
 
 * This is a new release.
+
+
+-------
+
+Added more return values and descriptions of return values.
